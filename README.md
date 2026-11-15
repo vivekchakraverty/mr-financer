@@ -14,6 +14,10 @@ Mr. Financer is a local-first research workspace for founders. Compare similar p
 
 ## Run locally
 
+Download the executable for your system from the [latest release](https://github.com/vivekchakraverty/mr-financer/releases/latest). On Windows, run the `.exe`. On macOS and Linux, extract the archive, open a terminal in that folder, and run `./mrfinancer`. The app opens at [localhost:8765](http://127.0.0.1:8765/).
+
+### Run from source
+
 Use Python 3.11 or later. On Windows, run this from the repository root:
 
 ```powershell

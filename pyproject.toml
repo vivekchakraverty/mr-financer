@@ -1,6 +1,6 @@
 [project]
 name = "mr-financer"
-version = "0.1.1"
+version = "0.1.2"
 description = "A business research workspace for comparing products, planning a business, and exploring funding."
 readme = "README.md"
 authors = [{name = "Vivek Chakraverty"}]
@@ -28,6 +28,7 @@ dependencies = [
 
 [project.optional-dependencies]
 places = ["duckdb>=1.2.0", "pyiceberg[pyarrow]>=0.10.0"]
+build = ["pyinstaller>=6.20,<7"]
 dev = [
     "pytest>=8.2.0",
     "pytest-asyncio>=0.23.0",

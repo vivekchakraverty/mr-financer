@@ -1,0 +1,137 @@
+name: Build executables
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the built executables as a GitHub release
+        type: boolean
+        default: false
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: windows-x64
+            runner: windows-2022
+            executable: dist/mrfinancer.exe
+          - target: macos-arm64
+            runner: macos-15
+            executable: dist/mrfinancer
+          - target: macos-x64
+            runner: macos-15-intel
+            executable: dist/mrfinancer
+          - target: linux-x64
+            runner: ubuntu-22.04
+            executable: dist/mrfinancer
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install ".[build,dev]"
+      - name: Check package version
+        id: package
+        shell: python
+        run: |
+          import os
+          from importlib.metadata import version
+          from mrfinancer import __version__
+          installed = version("mr-financer")
+          if installed != __version__:
+              raise SystemExit("The package and application versions differ.")
+          ref = os.environ["GITHUB_REF"]
+          if ref.startswith("refs/tags/") and ref != f"refs/tags/v{installed}":
+              raise SystemExit("The tag must match the package version.")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              print(f"version={installed}", file=output)
+      - name: Run application tests
+        if: runner.os == 'Linux'
+        run: python -m pytest -q
+      - name: Install headless Chromium
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: "0"
+        run: python -m playwright install --only-shell chromium
+      - name: Build native executable
+        run: python -m PyInstaller --noconfirm --clean scripts/mrfinancer.spec
+      - name: Verify the packaged app
+        run: python scripts/check-executable.py ${{ matrix.executable }} ${{ steps.package.outputs.version }}
+      - name: Prepare release asset
+        shell: python
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+          BUILD_VERSION: ${{ steps.package.outputs.version }}
+          BUILD_EXECUTABLE: ${{ matrix.executable }}
+        run: |
+          import os
+          import shutil
+          import tarfile
+          from pathlib import Path
+
+          output = Path("dist") / "release"
+          output.mkdir(exist_ok=True)
+          executable = Path(os.environ["BUILD_EXECUTABLE"])
+          stem = f"mr-financer-v{os.environ['BUILD_VERSION']}-{os.environ['BUILD_TARGET']}"
+          if os.name == "nt":
+              shutil.copyfile(executable, output / f"{stem}.exe")
+          else:
+              with tarfile.open(output / f"{stem}.tar.gz", "w:gz", compresslevel=1) as archive:
+                  archive.add(executable, arcname=executable.name)
+      - uses: actions/upload-artifact@v7
+        with:
+          name: executable-${{ matrix.target }}
+          path: dist/release/*
+          if-no-files-found: error
+          compression-level: 0
+
+  publish:
+    name: Publish GitHub release
+    if: github.ref_type == 'tag' || (inputs.publish && github.ref_name == github.event.repository.default_branch)
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: executable-*
+          path: release-assets
+          merge-multiple: true
+      - name: Publish the verified assets
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(python3 -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          tag="v$version"
+          prefix="mr-financer-$tag"
+          cd release-assets
+          assets=("$prefix-windows-x64.exe" "$prefix-macos-arm64.tar.gz" "$prefix-macos-x64.tar.gz" "$prefix-linux-x64.tar.gz")
+          sha256sum "${assets[@]}" > SHA256SUMS
+          notes="../docs/releases/$version.md"
+          if [[ -f "$notes" ]]; then
+            notes_args=(--notes-file "$notes")
+          else
+            notes_args=(--generate-notes)
+          fi
+          if [[ "$GITHUB_REF_TYPE" == tag ]]; then
+            tag_args=(--verify-tag)
+          else
+            tag_args=(--target "$GITHUB_SHA")
+          fi
+          gh release create "$tag" "${assets[@]}" SHA256SUMS "${tag_args[@]}" \
+            --title "Mr. Financer $version" "${notes_args[@]}" --latest
