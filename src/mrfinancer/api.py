@@ -9,6 +9,7 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
+from . import __version__
 from .adapters import build_discovery_adapters, build_financial_adapters
 from .config import get_settings
 from .idea import normalize_idea
@@ -19,13 +20,14 @@ from .workspace import router as workspace_router
 from .business_plan import router as business_plan_router
 from .pitch_deck import router as pitch_router
 from .pitch_art import router as pitch_art_router
+from .pitch_export import router as pitch_export_router
 from .loans import router as loan_router
 from .investors import router as investor_router
 from .incorporation import router as incorporation_router
 
 app = FastAPI(
     title="Mr. Financer - Product Idea",
-    version="0.1.0",
+    version=__version__,
     description="Finds similar products and their freely available financials.",
 )
 
@@ -34,6 +36,7 @@ app.include_router(workspace_router)
 app.include_router(business_plan_router)
 app.include_router(pitch_router)
 app.include_router(pitch_art_router)
+app.include_router(pitch_export_router)
 app.include_router(loan_router)
 app.include_router(investor_router)
 app.include_router(incorporation_router)

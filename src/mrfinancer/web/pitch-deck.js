@@ -1,4 +1,5 @@
 import { businessPlanAnswers } from "./business-plan.js";
+import { downloadFile, requestDownload } from "./downloads.js";
 
 const byId = id => document.getElementById(id);
 const modes = [["investor", "Investor"], ["lender", "Lender"], ["grant", "Grant committee"],
@@ -227,14 +228,7 @@ function render(deck) {
 }
 
 function download(name, text) {
-  const url = URL.createObjectURL(new Blob([text], {type: "text/markdown;charset=utf-8"}));
-  const anchor = el("a");
-  anchor.href = url;
-  anchor.download = name;
-  document.body.append(anchor);
-  anchor.click();
-  anchor.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  downloadFile(new Blob([text], {type: "text/markdown;charset=utf-8"}), name);
 }
 
 function outlineText(deck, onlyPrompts = false) {
@@ -262,7 +256,113 @@ function outlineText(deck, onlyPrompts = false) {
   return lines.join("\n") + "\n";
 }
 
+function initializeImageDeck() {
+  const form = byId("pitch-image-deck");
+  const input = byId("pitch-upload");
+  const list = byId("pitch-image-list");
+  const button = byId("pitch-download-pptx");
+  const status = byId("pitch-upload-status");
+  const images = [];
+  const mb = 1024 * 1024;
+  let exporting = false;
+
+  function announce(message) {
+    status.textContent = message;
+    status.hidden = !message;
+  }
+
+  function renderImages() {
+    list.replaceChildren(...images.map(({file, url}, index) => {
+      const row = el("li");
+      const thumbnail = el("img");
+      thumbnail.src = url;
+      thumbnail.alt = "";
+      thumbnail.loading = "lazy";
+      const name = el("span", file.name, "pitch-image-name");
+      const actions = el("div", null, "pitch-image-actions");
+      for (const [action, label, unavailable] of [
+        ["up", "Move up", index === 0],
+        ["down", "Move down", index === images.length - 1],
+        ["remove", "Remove", false],
+      ]) {
+        const control = el("button", label, "chip");
+        control.type = "button";
+        control.dataset.imageAction = action;
+        control.dataset.imageIndex = index;
+        control.setAttribute("aria-label", label + " " + file.name + " (slide " + (index + 1) + ")");
+        control.disabled = unavailable;
+        actions.append(control);
+      }
+      row.append(thumbnail, name, actions);
+      return row;
+    }));
+    list.hidden = images.length === 0;
+    button.disabled = exporting || images.length === 0;
+  }
+
+  input.addEventListener("change", () => {
+    const files = [...input.files];
+    input.value = "";
+    if (!files.length) return;
+    if (images.length + files.length > 40) return announce("Select up to 40 images in one deck.");
+    for (const file of files) {
+      if (!file.size || file.size > 10 * mb) return announce(file.name + " must be between 1 byte and 10 MB.");
+      if (!/^image\/(png|jpeg|webp)$/.test(file.type) && !/\.(png|jpe?g|webp)$/i.test(file.name)) {
+        return announce(file.name + " must be a PNG, JPEG, or WebP image.");
+      }
+    }
+    const bytes = files.reduce((total, file) => total + file.size, 0) +
+      images.reduce((total, image) => total + image.file.size, 0);
+    if (bytes > 50 * mb) return announce("Select images totaling 50 MB or less.");
+    for (const file of files) images.push({file, url: URL.createObjectURL(file)});
+    renderImages();
+    announce(images.length + (images.length === 1 ? " image ready." : " images ready."));
+  });
+
+  list.addEventListener("click", event => {
+    const control = event.target.closest("[data-image-action]");
+    if (!control) return;
+    const index = Number(control.dataset.imageIndex);
+    const action = control.dataset.imageAction;
+    let nextIndex = index;
+    if (action === "remove") {
+      const [removed] = images.splice(index, 1);
+      URL.revokeObjectURL(removed.url);
+      nextIndex = Math.min(index, images.length - 1);
+      announce("Removed " + removed.file.name + ".");
+    } else {
+      nextIndex = index + (action === "up" ? -1 : 1);
+      [images[index], images[nextIndex]] = [images[nextIndex], images[index]];
+      announce(images[nextIndex].file.name + " moved to slide " + (nextIndex + 1) + ".");
+    }
+    renderImages();
+    const row = list.children[nextIndex];
+    (row?.querySelector('[data-image-action="' + action + '"]:enabled') ||
+      row?.querySelector("button:enabled") || input).focus();
+  });
+
+  form.addEventListener("submit", async event => {
+    event.preventDefault();
+    if (exporting || !images.length) return;
+    const data = new FormData();
+    for (const {file} of images) data.append("images", file);
+    exporting = true;
+    button.disabled = true;
+    announce("Building your PowerPoint…");
+    try {
+      await requestDownload("/business-plan/pitch/export/pptx", {body: data}, "Mr-Financer-Slide-Deck.pptx");
+      announce("Download started.");
+    } catch (error) {
+      announce(error.message);
+    } finally {
+      exporting = false;
+      button.disabled = images.length === 0;
+    }
+  });
+}
+
 export async function initializePitchDeck() {
+  initializeImageDeck();
   const container = byId("pitch-settings");
   const submit = byId("pitch-submit");
   try {

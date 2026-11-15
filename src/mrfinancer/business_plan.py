@@ -1,13 +1,16 @@
 """Same-origin proxy from Mr Financer to its Gradio Space."""
 import json
 from pathlib import Path
+from typing import Literal
 
 import httpx
 from fastapi import APIRouter, Header, HTTPException, Request
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from pydantic import ValidationError
+from starlette.concurrency import run_in_threadpool
 
 from .config import get_settings
+from .plan_export import PLAN_MEDIA_TYPES, PlanExport, export_plan
 from .plan_financials import PlanRequest, build_exhibits
 
 router = APIRouter()
@@ -50,6 +53,25 @@ def questionnaire():
 async def preview(request: Request):
     payload = await read_payload(request)
     return {"ok": True, "sections": [], "exhibits": build_exhibits(payload)}
+
+
+@router.post("/business-plan/export/{file_format}")
+async def download_plan(file_format: Literal["pdf", "docx"], request: Request):
+    data = bytearray()
+    async for chunk in request.stream():
+        if len(data) + len(chunk) > 1_048_576:
+            raise HTTPException(413, "This business plan is too large to export.")
+        data.extend(chunk)
+    try:
+        plan = PlanExport.model_validate_json(data)
+    except ValidationError:
+        raise HTTPException(422, "Provide a valid business plan to export.") from None
+    content = await run_in_threadpool(export_plan, plan, file_format)
+    name = "Business-Plan-Financial-Preview" if plan.preview else "Business-Plan"
+    return Response(content, media_type=PLAN_MEDIA_TYPES[file_format], headers={
+        "Content-Disposition": f'attachment; filename="Mr-Financer-{name}.{file_format}"',
+        "Cache-Control": "no-store",
+    })
 
 
 @router.post("/business-plan/draft")

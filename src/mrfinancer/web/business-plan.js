@@ -1,3 +1,5 @@
+import { requestDownload } from "./downloads.js";
+
 const byId = id => document.getElementById(id);
 const metrics = {turnover: "Revenue", cost_of_sales: "Cost of sales", gross_profit: "Gross profit",
   operating_profit: "Operating profit", net_profit: "Net profit", profit_before_tax: "Profit before tax",
@@ -250,9 +252,10 @@ function note(message) {
   box.hidden = !message;
 }
 
-function table(parent, headers, rows) {
+function table(parent, headers, rows, exhibit) {
   const wrap = el("div", null, "table-scroll");
   const node = el("table");
+  if (exhibit) node.dataset.exhibit = exhibit;
   const head = el("thead"), top = el("tr"), body = el("tbody");
   for (const title of headers) {
     const th = el("th", title); th.scope = "col"; top.append(th);
@@ -290,12 +293,12 @@ function render(result) {
     if (scenario.capacity_limits.length) details.append(el("p", "Forecast capped at stated capacity for " + scenario.capacity_limits.join(", ") + "."));
     table(details, ["Offer", "Price", "Variable cost", "Contribution", "Contribution margin %", "Break-even units"],
       scenario.unit_economics.map(r => [r.offer, r.price, r.variable_cost, r.contribution, r.contribution_margin_percent,
-        r.break_even_units == null ? null : r.break_even_units + (r.break_even_exceeds_capacity ? " (above capacity)" : "")]));
+        r.break_even_units == null ? null : r.break_even_units + (r.break_even_exceeds_capacity ? " (above capacity)" : "")]), "unit-economics");
     const cols = {month: "Month", opening_cash: "Opening cash", revenue: "Sales", variable_cost: "Variable costs",
       fixed_cost: "Fixed costs", operating_result: "Operating result", customer_receipts: "Cash receipts",
       variable_payments: "Supplier payments", funding_and_other_inflows: "Other cash in",
       setup_and_other_payments: "Other cash out", cash_change: "Cash change", closing_cash: "Closing cash"};
-    table(details, Object.values(cols), scenario.rows.map(row => Object.keys(cols).map(key => row[key])));
+    table(details, Object.values(cols), scenario.rows.map(row => Object.keys(cols).map(key => row[key])), "monthly-forecast");
     output.append(details);
   }
   if (x.input_statuses?.length) {
@@ -303,7 +306,7 @@ function render(result) {
     details.append(el("summary", "Forecast inputs and confidence"));
     const status = {actual: "Actual", estimate: "Estimate", unknown: "Unknown", na: "Doesn’t apply"};
     table(details, ["Input", "Status", "Entered value"],
-      x.input_statuses.map(row => [row.label, status[row.status], [row.low, row.high].filter(v => v !== null).join(" to ") || "—"]));
+      x.input_statuses.map(row => [row.label, status[row.status], [row.low, row.high].filter(v => v != null).join(" to ") || "—"]));
     output.append(details);
   }
   const peers = el("article", null, "record");
@@ -329,7 +332,64 @@ function render(result) {
   output.append(peers);
 }
 
+function planExportBlocks() {
+  const kinds = {H3: "heading", SUMMARY: "heading", P: "paragraph", LI: "bullet"};
+  const blocks = [];
+  for (const node of byId("plan-output").querySelectorAll("h3, summary, p, li, table")) {
+    if (node.tagName !== "TABLE") {
+      blocks.push({kind: kinds[node.tagName], text: node.textContent});
+      continue;
+    }
+    const headings = Array.from(node.tHead.rows[0].cells, cell => cell.textContent);
+    const rows = Array.from(node.tBodies[0].rows, row => Array.from(row.cells, cell => {
+      const url = cell.querySelector("a[href]")?.href;
+      return {text: cell.textContent, ...(url && {url})};
+    }));
+    if (node.dataset.exhibit === "monthly-forecast") {
+      // Repeat the month column so the operating and cash flow tables fit on a page.
+      const indices = Array.from(headings.keys());
+      for (const [title, columns] of [
+        ["Monthly operating forecast", [0, ...indices.slice(2, 6)]],
+        ["Monthly cash flow", [0, 1, ...indices.slice(6)]],
+      ]) {
+        blocks.push({kind: "heading", text: title});
+        blocks.push({kind: "table", headings: columns.map(index => headings[index]),
+          rows: rows.map(row => columns.map(index => row[index]))});
+      }
+      continue;
+    }
+    if (node.dataset.exhibit === "unit-economics") blocks.push({kind: "heading", text: "Unit economics"});
+    blocks.push({kind: "table", headings, rows});
+  }
+  return blocks;
+}
+
+function initializePlanExports() {
+  const container = byId("plan-exports");
+  const status = byId("plan-export-status");
+  const buttons = [...container.querySelectorAll("[data-plan-format]")];
+  for (const button of buttons) button.addEventListener("click", async () => {
+    const format = button.dataset.planFormat;
+    const preview = container.dataset.preview === "true";
+    const name = preview ? "Business-Plan-Financial-Preview" : "Business-Plan";
+    const blocks = planExportBlocks();
+    buttons.forEach(item => { item.disabled = true; });
+    status.textContent = "Preparing your download…";
+    try {
+      await requestDownload("/business-plan/export/" + format, {
+        headers: {"Content-Type": "application/json"}, body: JSON.stringify({preview, blocks}),
+      }, "Mr-Financer-" + name + "." + format);
+      status.textContent = "Download started.";
+    } catch (error) {
+      status.textContent = error.message;
+    } finally {
+      buttons.forEach(item => { item.disabled = false; });
+    }
+  });
+}
+
 export function initializePlan() {
+  initializePlanExports();
   const questions = el("fieldset");
   const grid = el("div", null, "plan-grid");
   questions.append(el("legend", "Your business idea"), grid);
@@ -375,6 +435,9 @@ export function initializePlan() {
       if (!preview && response.ok && result.ok) tokenField.value = "";
       if (!response.ok || !result.ok) throw new Error(result.error?.message || result.detail || "The plan request could not be completed.");
       render(result);
+      byId("plan-exports").dataset.preview = String(!result.sections?.length);
+      byId("plan-exports").hidden = false;
+      byId("plan-export-status").textContent = "";
       note(result.warning || (preview ? "Financial preview ready." : "Business plan ready."));
     } catch (error) {
       note(error.message || "The plan request could not be completed.");

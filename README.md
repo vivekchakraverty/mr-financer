@@ -7,7 +7,7 @@ Mr. Financer is a local-first research workspace for founders. Compare similar p
 | Workspace | What you can do |
 | --- | --- |
 | Ideation | Compare products and services, inspect evidence, and review company financials and reviews |
-| Documents | Build a business plan with forecast checks, draft a pitch outline, and generate optional slide illustrations |
+| Documents | Draft a business plan or pitch outline from a questionnaire, export plans to PDF or Word, and turn batches of images into PowerPoint decks |
 | Funding | Search Fintable, browse lender directories by country, and query your locally imported investor workbook |
 | Incorporation | Review workbook findings and live official pages for 30 economies |
 | Data Sources | See which discovery and finance connectors are configured |

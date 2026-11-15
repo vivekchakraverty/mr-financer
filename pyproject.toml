@@ -1,6 +1,6 @@
 [project]
 name = "mr-financer"
-version = "0.1.0"
+version = "0.1.1"
 description = "A business research workspace for comparing products, planning a business, and exploring funding."
 readme = "README.md"
 authors = [{name = "Vivek Chakraverty"}]
@@ -10,6 +10,11 @@ dependencies = [
     "playwright>=1.52,<2",
     "openpyxl>=3.1,<4",
     "pypdf>=5,<8",
+    "reportlab>=4.4,<6",
+    "python-docx>=1.2,<2",
+    "python-pptx>=1.0,<2",
+    "python-multipart>=0.0.22,<1",
+    "Pillow>=11",
     "pydantic>=2.7.0",
     "pydantic-settings>=2.3.0",
     "typer>=0.12.0",

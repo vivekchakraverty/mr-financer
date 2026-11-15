@@ -150,6 +150,19 @@ dialog.company-drawer { position:fixed; inset:0 0 0 auto; margin:0; padding:0; w
 .pitch-artwork { margin-top:10px; }
 .pitch-artwork textarea { margin-bottom:8px; }
 .pitch-artwork img { display:block; max-width:100%; height:auto; margin:10px 0; border-radius:8px; }
+.file-exports, #pitch-image-deck { margin-bottom:16px; }
+.file-exports p:empty { display:none; }
+#pitch-image-deck h3 { margin-top:0; }
+.pitch-file-picker { position:relative; }
+#pitch-upload { position:absolute; width:1px; height:1px; padding:0; opacity:0; }
+.pitch-file-picker label { cursor:pointer; padding:8px 12px; }
+.pitch-file-picker label:hover { background:#d7e5d7; }
+#pitch-upload:focus-visible + label { outline:2px solid #376d55; outline-offset:3px; }
+.pitch-image-list { padding-left:1.75rem; margin:14px 0; }
+.pitch-image-list li { padding:8px 0; border-bottom:1px solid var(--line); }
+.pitch-image-list img { width:64px; height:44px; object-fit:contain; vertical-align:middle; margin-right:8px; }
+.pitch-image-name { overflow-wrap:anywhere; }
+.pitch-image-actions { display:inline-flex; flex-wrap:wrap; gap:6px; margin:4px 0 4px 8px; }
 
 .loan-tabs, .loan-source-links { display: flex; flex-wrap: wrap; gap: .55rem 1rem; }
 .loan-tabs { margin-bottom: 1rem; }

@@ -11,7 +11,7 @@ from .pipeline import analyze_idea
 from .report import render_markdown
 from .validation import PROFILES, Thresholds, thresholds_for, validate_facts
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "analyze_idea",

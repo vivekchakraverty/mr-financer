@@ -115,14 +115,35 @@
           </div>
           <p class="notice" id="plan-note" role="status" hidden></p>
         </form>
+        <div id="plan-exports" class="file-exports" hidden>
+          <div class="pitch-controls">
+            <button type="button" class="chip" data-plan-format="pdf">Download PDF</button>
+            <button type="button" class="chip" data-plan-format="docx">Download Word (.docx)</button>
+          </div>
+          <p id="plan-export-status" role="status"></p>
+        </div>
         <div id="plan-output" class="financial-list" aria-live="polite"></div>
       </section>
       <section id="pitch-deck" class="section pitch-deck" data-workspace-feature aria-labelledby="pitch-title" hidden>
         <div class="section-head">
           <div><h2 id="pitch-title">Build your pitch deck</h2>
-            <p>Choose a slide count. Use your answers and reviewed figures to create a slide-by-slide outline.</p></div>
+            <p>Use your answers and reviewed figures to draft an outline, or upload images for a PowerPoint deck.</p></div>
           <a class="link" href="/business-plan/pitch/questionnaire">Download questionnaire</a>
         </div>
+        <form id="pitch-image-deck" class="search-card plan-form" aria-labelledby="image-deck-title">
+          <h3 id="image-deck-title">Create a PowerPoint from images</h3>
+          <p id="pitch-upload-help">Add up to 40 PNG, JPEG, or WebP images. Each image becomes one slide in the order shown. Files can be up to 10 MB each and 50 MB total.</p>
+          <div class="pitch-file-picker">
+            <input id="pitch-upload" type="file" multiple
+                   accept="image/png,image/jpeg,image/webp,.png,.jpg,.jpeg,.webp" aria-describedby="pitch-upload-help">
+            <label class="chip" for="pitch-upload">Add images</label>
+          </div>
+          <ol id="pitch-image-list" class="pitch-image-list" aria-label="Slide order" hidden></ol>
+          <div class="pitch-controls">
+            <button id="pitch-download-pptx" type="submit" class="primary" disabled>Download PowerPoint (.pptx)</button>
+          </div>
+          <p id="pitch-upload-status" role="status" hidden></p>
+        </form>
         <form id="pitch-form" class="search-card plan-form">
           <fieldset><legend>Deck brief</legend>
             <div class="plan-grid" id="pitch-settings"></div>
