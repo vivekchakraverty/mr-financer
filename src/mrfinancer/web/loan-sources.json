@@ -1,0 +1,554 @@
+[
+  {
+    "code": "AR",
+    "name": "Argentina",
+    "rank": 24,
+    "sources": [
+      {
+        "id": "bcra",
+        "name": "BCRA financial entities database",
+        "url": "https://www.bcra.gob.ar/entidades-financieras/",
+        "coverage": "Personal and business",
+        "note": "Banks, financial entities.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "AU",
+    "name": "Australia",
+    "rank": 14,
+    "sources": [
+      {
+        "id": "apra",
+        "name": "APRA authorised deposit-taking institutions",
+        "url": "https://www.apra.gov.au/registers/list-registered-authorised-deposit-taking-institutions",
+        "coverage": "Personal and business",
+        "note": "Banks, credit unions, building societies.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "BE",
+    "name": "Belgium",
+    "rank": 23,
+    "sources": [
+      {
+        "id": "nbb",
+        "name": "National Bank of Belgium credit institutions",
+        "url": "https://www.nbb.be/fr/activites/supervision-financiere-et-resolution/controle-des-etablissements-financiers/etablissements-de-credit/listes/etablissements-de-credit-agrees-en-belgique",
+        "coverage": "Personal and business",
+        "note": "Banks and credit institutions.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "BR",
+    "name": "Brazil",
+    "rank": 10,
+    "sources": [
+      {
+        "id": "bcb",
+        "name": "BCB financial institutions open dataset",
+        "url": "https://dadosabertos.bcb.gov.br/dataset/relacao-de-instituicoes-em-funcionamento-no-pais",
+        "coverage": "Personal and business",
+        "note": "Licensed financial institutions. Published in the central bank's open-data catalogue.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  },
+  {
+    "code": "CA",
+    "name": "Canada",
+    "rank": 11,
+    "sources": [
+      {
+        "id": "canada-banks",
+        "name": "Canadian banks directory",
+        "url": "https://canadianbanks.ca/directory",
+        "coverage": "Personal and business",
+        "note": "Banks, credit unions, trust and loan companies.",
+        "type": "Third party",
+        "mode": "list"
+      },
+      {
+        "id": "osfi",
+        "name": "OSFI regulated institutions",
+        "url": "https://www.osfi-bsif.gc.ca/en/supervision/financial-institutions",
+        "coverage": "Personal and business",
+        "note": "Federal institutions.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "CN",
+    "name": "China",
+    "rank": 2,
+    "sources": [
+      {
+        "id": "nfra",
+        "name": "NFRA banking institutions list",
+        "url": "https://www.nfra.gov.cn/cn/view/pages/ItemDetail.html?docId=1268142",
+        "coverage": "Personal and business",
+        "note": "Licensed banking institutions.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "FR",
+    "name": "France",
+    "rank": 7,
+    "sources": [
+      {
+        "id": "regafi",
+        "name": "REGAFI financial institutions register",
+        "url": "https://regafi.fr/",
+        "coverage": "Personal and business",
+        "note": "Authorised financial institutions. API access available.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "DE",
+    "name": "Germany",
+    "rank": 3,
+    "sources": [
+      {
+        "id": "bafin",
+        "name": "BaFin company database",
+        "url": "https://portal.mvp.bafin.de/database/InstInfo/",
+        "coverage": "Personal and business",
+        "note": "Regulated institutions.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "IN",
+    "name": "India",
+    "rank": 6,
+    "sources": [
+      {
+        "id": "rbi",
+        "name": "RBI regulated entities",
+        "url": "https://www.rbi.org.in/scripts/FinancialAgents.aspx",
+        "coverage": "Personal and business",
+        "note": "Banks and other regulated entities.",
+        "type": "Official",
+        "mode": "list"
+      },
+      {
+        "id": "rbi-nbfc",
+        "name": "RBI NBFC list",
+        "url": "https://www.rbi.org.in/SCRIPTS/BS_NBFCList.aspx",
+        "coverage": "Personal and business",
+        "note": "Registered NBFCs, including non-lenders.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  },
+  {
+    "code": "ID",
+    "name": "Indonesia",
+    "rank": 17,
+    "sources": [
+      {
+        "id": "ojk",
+        "name": "OJK Indonesian banking directory",
+        "url": "https://ojk.go.id/en/kanal/perbankan/data-dan-statistik/direktori-perbankan-indonesia/lists/daftar%20bank/allitems.aspx",
+        "coverage": "Personal and business",
+        "note": "Licensed banks.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "IE",
+    "name": "Ireland",
+    "rank": 27,
+    "sources": [
+      {
+        "id": "cbi",
+        "name": "Central Bank registers",
+        "url": "https://registers.centralbank.ie/",
+        "coverage": "Personal and business",
+        "note": "Regulated financial institutions.",
+        "type": "Official",
+        "mode": "browser"
+      },
+      {
+        "id": "cbi-downloads",
+        "name": "Downloadable registers",
+        "url": "https://registers.centralbank.ie/downloadspage.aspx",
+        "coverage": "Personal and business",
+        "note": "Banks, credit unions, retail credit firms. Separate registers for the listed institution types.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  },
+  {
+    "code": "IL",
+    "name": "Israel",
+    "rank": 25,
+    "sources": [
+      {
+        "id": "boi",
+        "name": "Bank of Israel supervised banks",
+        "url": "https://www.boi.org.il/en/economic-roles/supervision-and-regulation/list_supervised/",
+        "coverage": "Personal and business",
+        "note": "Domestic and foreign banks.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "IT",
+    "name": "Italy",
+    "rank": 9,
+    "sources": [
+      {
+        "id": "bank-italy",
+        "name": "Bank of Italy registers",
+        "url": "https://www.bancaditalia.it/servizi-cittadino/servizi/albi-elenchi/index.html",
+        "coverage": "Personal and business",
+        "note": "Banks and financial intermediaries.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  },
+  {
+    "code": "JP",
+    "name": "Japan",
+    "rank": 4,
+    "sources": [
+      {
+        "id": "fsa-japan",
+        "name": "FSA licensed institutions and moneylenders",
+        "url": "https://www.fsa.go.jp/en/regulated/licensed/index.html",
+        "coverage": "Personal and business",
+        "note": "Banks, cooperatives, nonbank lenders.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  },
+  {
+    "code": "MX",
+    "name": "Mexico",
+    "rank": 13,
+    "sources": [
+      {
+        "id": "cnbv",
+        "name": "CNBV supervised entities",
+        "url": "https://www.cnbv.gob.mx/Paginas/PADR%C3%93N-DE-ENTIDADES-SUPERVISADAS.aspx",
+        "coverage": "Personal and business",
+        "note": "Regulated financial entities.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "NL",
+    "name": "Netherlands",
+    "rank": 18,
+    "sources": [
+      {
+        "id": "dnb",
+        "name": "DNB public register",
+        "url": "https://www.dnb.nl/en/public-register/",
+        "coverage": "Personal and business",
+        "note": "Authorised financial institutions.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "NO",
+    "name": "Norway",
+    "rank": 30,
+    "sources": [
+      {
+        "id": "norway",
+        "name": "Finanstilsynet institutions report",
+        "url": "https://www.finanstilsynet.no/en/finanstilsynets-registry/predefined-report/?area=DomesticActivityBank",
+        "coverage": "Personal and business",
+        "note": "Banking and credit institutions.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "PL",
+    "name": "Poland",
+    "rank": 21,
+    "sources": [
+      {
+        "id": "knf",
+        "name": "KNF register of loan institutions",
+        "url": "https://www.knf.gov.pl/podmioty/sektor_instytucji_pozyczkowych/rejestr_instytucji_pozyczkowych",
+        "coverage": "Personal",
+        "note": "Registered nonbank loan companies.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "RU",
+    "name": "Russia",
+    "rank": 8,
+    "sources": [
+      {
+        "id": "cbr",
+        "name": "Central Bank credit institutions",
+        "url": "https://www.cbr.ru/banking_sector/credit/",
+        "coverage": "Personal and business",
+        "note": "Registered banks and credit institutions.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "SA",
+    "name": "Saudi Arabia",
+    "rank": 19,
+    "sources": [
+      {
+        "id": "sama-finance",
+        "name": "SAMA licensed finance companies",
+        "url": "https://www.sama.gov.sa/en-us/supervision/licenseentities/pages/financelicencedentities.aspx",
+        "coverage": "Personal and business",
+        "note": "Consumer and SME finance companies. Activities listed include consumer finance, microfinance and SME finance.",
+        "type": "Official",
+        "mode": "list"
+      },
+      {
+        "id": "sama-banks",
+        "name": "SAMA licensed banks",
+        "url": "https://www.sama.gov.sa/en-US/Supervision/LicenseEntities/Pages/LicensedEntities.aspx",
+        "coverage": "Personal and business",
+        "note": "Banks and other licensed entities.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "SG",
+    "name": "Singapore",
+    "rank": 28,
+    "sources": [
+      {
+        "id": "mas",
+        "name": "MAS financial institutions directory",
+        "url": "https://eservices.mas.gov.sg/fid/institution",
+        "coverage": "Personal and business",
+        "note": "Banks and finance companies.",
+        "type": "Official",
+        "mode": "browser"
+      },
+      {
+        "id": "sg-moneylenders",
+        "name": "Registry of licensed moneylenders",
+        "url": "https://rom.mlaw.gov.sg/information-for-borrowers/list-of-licensed-moneylenders-in-singapore/",
+        "coverage": "Personal",
+        "note": "Licensed moneylenders. Includes company names, licence details and websites.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "KR",
+    "name": "South Korea",
+    "rank": 12,
+    "sources": [
+      {
+        "id": "fss",
+        "name": "FSS loan-product comparison portal",
+        "url": "https://finlife.fss.or.kr/",
+        "coverage": "Personal and business",
+        "note": "Personal loans and sole-proprietor loan products. Compares actual loan products.",
+        "type": "Official",
+        "mode": "browser"
+      },
+      {
+        "id": "bank-index",
+        "name": "Bank Index: South Korea",
+        "url": "https://bankindex.io/companies/south-korea/",
+        "coverage": "Personal and business",
+        "note": "Bank and lender directory.",
+        "type": "Third party",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "ES",
+    "name": "Spain",
+    "rank": 15,
+    "sources": [
+      {
+        "id": "bde",
+        "name": "Banco de España institution registers",
+        "url": "https://www.bde.es/wbe/en/punto-informacion/contenidos/registros/registros-entidades/",
+        "coverage": "Personal and business",
+        "note": "Authorised credit institutions.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "SE",
+    "name": "Sweden",
+    "rank": 26,
+    "sources": [
+      {
+        "id": "fi",
+        "name": "FI company register",
+        "url": "https://www.fi.se/companies",
+        "coverage": "Personal and business",
+        "note": "Consumer-credit companies, banks, credit-market companies.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "CH",
+    "name": "Switzerland",
+    "rank": 20,
+    "sources": [
+      {
+        "id": "finma",
+        "name": "FINMA authorised institutions",
+        "url": "https://www.finma.ch/en/finma-public/bewilligte-institute-personen-und-produkte/",
+        "coverage": "Personal and business",
+        "note": "Authorised banks and financial institutions.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  },
+  {
+    "code": "TW",
+    "name": "Taiwan",
+    "rank": 22,
+    "sources": [
+      {
+        "id": "fsc",
+        "name": "FSC financial institutions directory",
+        "url": "https://www.banking.gov.tw/en/home.jsp?id=24&parentpath=0,100&mcustomize=FscSearch_BankType.jsp&type=1",
+        "coverage": "Personal and business",
+        "note": "Banking institutions.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "TR",
+    "name": "Turkey",
+    "rank": 16,
+    "sources": [
+      {
+        "id": "bddk",
+        "name": "BDDK banks and financial companies",
+        "url": "https://www.bddk.org.tr/Kurulus/Liste/90",
+        "coverage": "Personal and business",
+        "note": "Banks, finance, leasing and factoring firms.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "AE",
+    "name": "United Arab Emirates",
+    "rank": 29,
+    "sources": [
+      {
+        "id": "cbuae",
+        "name": "CBUAE August 2026 register (PDF)",
+        "url": "https://www.centralbank.ae/media/hw0lreyi/cb-register-august-2026.pdf",
+        "coverage": "Personal and business",
+        "note": "Licensed banks and other regulated entities.",
+        "type": "Official",
+        "mode": "list"
+      }
+    ]
+  },
+  {
+    "code": "GB",
+    "name": "United Kingdom",
+    "rank": 5,
+    "sources": [
+      {
+        "id": "fca",
+        "name": "FCA Financial Services Register",
+        "url": "https://register.fca.org.uk/s/",
+        "coverage": "Personal and business",
+        "note": "Regulated firms and permissions.",
+        "type": "Official",
+        "mode": "browser"
+      }
+    ]
+  },
+  {
+    "code": "US",
+    "name": "United States",
+    "rank": 1,
+    "sources": [
+      {
+        "id": "fdic",
+        "name": "FDIC BankFind",
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/",
+        "coverage": "Personal and business",
+        "note": "Regulated banks.",
+        "type": "Official",
+        "mode": "browser"
+      },
+      {
+        "id": "tf",
+        "name": "Personal lenders directory",
+        "url": "https://tf.org/fiat/loans/personal-lenders/",
+        "coverage": "Personal",
+        "note": "Directory.",
+        "type": "Third party",
+        "mode": "list"
+      },
+      {
+        "id": "sba",
+        "name": "SBA lender reports",
+        "url": "https://www.sba.gov/sba-lenders/",
+        "coverage": "Business",
+        "note": "SBA participating lenders. Spreadsheet and CSV downloads available.",
+        "type": "Official",
+        "mode": "exports"
+      }
+    ]
+  }
+]

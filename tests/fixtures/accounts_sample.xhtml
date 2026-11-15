@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ix="http://www.xbrl.org/2013/inlineXBRL"
+      xmlns:xbrli="http://www.xbrl.org/2003/instance"
+      xmlns:core="http://xbrl.frc.org.uk/fr/2021-01-01/core"
+      xmlns:iso4217="http://www.xbrl.org/2003/iso4217">
+<head><title>Annual accounts</title></head>
+<body>
+<div style="display:none">
+  <ix:header>
+    <ix:resources>
+      <xbrli:context id="FY2024">
+        <xbrli:entity>
+          <xbrli:identifier scheme="http://www.companieshouse.gov.uk/">12345678</xbrli:identifier>
+        </xbrli:entity>
+        <xbrli:period>
+          <xbrli:startDate>2023-04-01</xbrli:startDate>
+          <xbrli:endDate>2024-03-31</xbrli:endDate>
+        </xbrli:period>
+      </xbrli:context>
+      <xbrli:context id="FY2023">
+        <xbrli:entity>
+          <xbrli:identifier scheme="http://www.companieshouse.gov.uk/">12345678</xbrli:identifier>
+        </xbrli:entity>
+        <xbrli:period>
+          <xbrli:startDate>2022-04-01</xbrli:startDate>
+          <xbrli:endDate>2023-03-31</xbrli:endDate>
+        </xbrli:period>
+      </xbrli:context>
+      <xbrli:context id="AT2024">
+        <xbrli:entity>
+          <xbrli:identifier scheme="http://www.companieshouse.gov.uk/">12345678</xbrli:identifier>
+        </xbrli:entity>
+        <xbrli:period>
+          <xbrli:instant>2024-03-31</xbrli:instant>
+        </xbrli:period>
+      </xbrli:context>
+      <xbrli:unit id="GBP">
+        <xbrli:measure>iso4217:GBP</xbrli:measure>
+      </xbrli:unit>
+      <xbrli:unit id="pure">
+        <xbrli:measure>xbrli:pure</xbrli:measure>
+      </xbrli:unit>
+    </ix:resources>
+  </ix:header>
+</div>
+
+<h1>Profit and loss account</h1>
+<table>
+  <tr>
+    <td>Turnover</td>
+    <td><ix:nonFraction name="core:TurnoverRevenue" contextRef="FY2024"
+        unitRef="GBP" scale="3" decimals="-3">4,812</ix:nonFraction></td>
+    <td><ix:nonFraction name="core:TurnoverRevenue" contextRef="FY2023"
+        unitRef="GBP" scale="3" decimals="-3">3,105</ix:nonFraction></td>
+  </tr>
+  <tr>
+    <td>Loss before taxation</td>
+    <td>(<ix:nonFraction name="core:ProfitLossOnOrdinaryActivitiesBeforeTax"
+        contextRef="FY2024" unitRef="GBP" scale="3" sign="-">612</ix:nonFraction>)</td>
+  </tr>
+  <tr>
+    <td>Average number of employees</td>
+    <td><ix:nonFraction name="core:AverageNumberEmployeesDuringPeriod"
+        contextRef="FY2024" unitRef="pure" decimals="0">27</ix:nonFraction></td>
+  </tr>
+  <tr>
+    <td>Net assets</td>
+    <td><ix:nonFraction name="core:NetAssetsLiabilities" contextRef="AT2024"
+        unitRef="GBP" scale="3" decimals="-3">1,904</ix:nonFraction></td>
+  </tr>
+  <tr>
+    <td>Something we do not track</td>
+    <td><ix:nonFraction name="core:TaxExpenseIncomeTax" contextRef="FY2024"
+        unitRef="GBP" scale="3">42</ix:nonFraction></td>
+  </tr>
+</table>
+</body>
+</html>

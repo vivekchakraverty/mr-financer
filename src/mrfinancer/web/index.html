@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Mr Financer · Market research</title>
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/app-icon.png" type="image/png" sizes="256x256">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="/assets/style.css" rel="stylesheet">
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="container top-inner">
+      <a class="brand" href="/" aria-label="Mr Financer home"><img class="brand-mark" src="/assets/app-icon.png" alt="" width="36" height="36">Mr Financer</a>
+      <nav class="top-nav" aria-label="Workspace">
+        <a href="#ideation" data-page-link="ideation" aria-current="page">Ideation</a>
+        <a href="#documents" data-page-link="documents">Documents</a>
+        <a href="#funding" data-page-link="funding">Funding</a>
+        <a href="#incorporation" data-page-link="incorporation">Incorporation</a>
+        <a href="#sources" data-page-link="sources">Data Sources</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section id="ideation" class="workspace-page" data-workspace-page aria-label="Ideation">
+      <section id="lookup" class="lookup">
+        <div class="intro">
+          <h1>See who’s already <em>building it.</em></h1>
+          <p>Describe the product or service you have in mind. Find comparable firms, then look up their published financial records.</p>
+        </div>
+        <form id="idea-form" class="search-card">
+          <label for="idea">Describe your idea</label>
+          <textarea id="idea" name="idea" maxlength="2000" minlength="3" required rows="4" placeholder="An invoicing tool that sends automatic payment reminders to freelance designers"></textarea>
+          <div class="examples">
+            <span>Try an example</span>
+            <button class="chip" type="button" data-idea="An invoicing tool that sends automatic payment reminders to freelance designers">Invoice reminders</button>
+            <button class="chip" type="button" data-idea="A laundry pickup and dry cleaning service with home delivery" data-market="Kolkata, India">Laundry pickup</button>
+          </div>
+          <div class="search-bottom">
+            <div class="market"><label for="market">Target market <small>Optional</small></label>
+              <input id="market" maxlength="120" placeholder="City or country"></div>
+            <button type="submit" class="primary" id="search-action">Find matches <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+        <p class="notice" id="search-note" role="status" hidden></p>
+      </section>
+      <section id="results" hidden class="section">
+        <div class="section-head">
+          <div><h2 id="results-title">Search results</h2><p id="results-summary"></p></div>
+          <div class="sizes" role="group" aria-label="Number of firms to show">
+            <button type="button" data-count="10" aria-pressed="true">10</button>
+            <button type="button" data-count="25" aria-pressed="false">25</button>
+            <button type="button" data-count="50" aria-pressed="false">50</button>
+            <button type="button" data-count="100" aria-pressed="false">100</button>
+          </div>
+        </div>
+        <div id="result-bar" class="result-bar" hidden>
+          <button class="link" type="button" id="select-visible">Select shown firms</button>
+          <span id="selection-count" role="status"></span>
+          <a class="link review-link" href="#finance">Financial review ↓</a>
+        </div>
+        <div id="match-list" class="match-list"></div>
+        <details id="search-coverage" class="details"><summary>Sources checked</summary><ul id="source-runs"></ul></details>
+        <details id="other-evidence" class="details" hidden><summary>Related projects and procurement notices</summary><ul id="evidence-list"></ul></details>
+      </section>
+      <section id="finance" class="section finance">
+        <div class="section-head">
+          <div><h2>Review financial records</h2><p>Choose firms from the search results. You can supply a legal name or registry ID for a more precise lookup.</p></div>
+          <button type="button" class="primary" id="finance-action" disabled>Fetch records <span aria-hidden="true">→</span></button>
+        </div>
+        <div id="finance-selection"></div>
+        <p class="notice" id="finance-note" role="status" hidden></p>
+        <div id="finance-results" class="financial-list"></div>
+      </section>
+    </section>
+    <section id="documents" class="workspace-page" data-workspace-page aria-label="Documents" hidden>
+      <nav class="feature-nav" aria-label="Documents">
+        <a href="#business-plan" data-feature-link="business-plan">Business Plan</a>
+        <a href="#pitch-deck" data-feature-link="pitch-deck">Pitch Deck</a>
+      </nav>
+      <section id="business-plan" class="section finance" data-workspace-feature>
+
+        <div class="section-head">
+          <div><h2>Build your business plan</h2><p>Answer the questionnaire and choose which reviewed filings to include.</p></div>
+          <a class="link" href="/business-plan/questionnaire">Download questionnaire</a>
+        </div>
+        <form id="plan-form" class="search-card plan-form">
+          <div id="plan-questions"></div>
+          <fieldset><legend>Prices, costs and cash</legend>
+            <div id="plan-offers"></div>
+            <button type="button" class="chip" id="plan-add-offer">Add another offer</button>
+            <div class="plan-grid" id="plan-cash"></div>
+            <div id="plan-events"></div>
+            <button type="button" class="chip" id="plan-add-event">Add a set-up, funding or other cash item</button>
+          </fieldset>
+          <fieldset><legend>Competitor financials <small>Optional</small></legend>
+            <p>Review the details and select the figures you want to include.</p>
+            <p id="plan-no-peers">Fetched figures from Financial review will appear here.</p>
+            <div id="plan-peers"></div>
+            <div id="plan-manual"></div>
+            <button type="button" id="plan-add-peer" class="chip">Enter a figure or filing manually</button>
+          </fieldset>
+          <fieldset><legend>Hugging Face account</legend>
+            <label>Personal access token
+              <input id="plan-token" type="password" autocomplete="off" spellcheck="false" maxlength="2048" placeholder="hf_…">
+            </label>
+            <p>Generation uses your Hugging Face ZeroGPU quota. <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">Manage your tokens</a>.</p>
+          </fieldset>
+          <div class="plan-actions">
+            <button type="submit" name="action" value="preview" class="chip">Preview financials</button>
+            <button type="submit" name="action" value="draft" class="primary" id="plan-generate">Generate business plan</button>
+          </div>
+          <p class="notice" id="plan-note" role="status" hidden></p>
+        </form>
+        <div id="plan-output" class="financial-list" aria-live="polite"></div>
+      </section>
+      <section id="pitch-deck" class="section pitch-deck" data-workspace-feature aria-labelledby="pitch-title" hidden>
+        <div class="section-head">
+          <div><h2 id="pitch-title">Build your pitch deck</h2>
+            <p>Choose a slide count. Use your answers and reviewed figures to create a slide-by-slide outline.</p></div>
+          <a class="link" href="/business-plan/pitch/questionnaire">Download questionnaire</a>
+        </div>
+        <form id="pitch-form" class="search-card plan-form">
+          <fieldset><legend>Deck brief</legend>
+            <div class="plan-grid" id="pitch-settings"></div>
+            <div class="pitch-controls">
+              <label class="pitch-check"><input type="checkbox" id="pitch-include-plan"> Include current business plan figures and selected competitor filings</label>
+              <button type="button" class="chip" id="pitch-import">Fill blank answers from business plan</button>
+            </div>
+          </fieldset>
+          <div id="pitch-questions"></div>
+          <div class="pitch-controls"><button class="primary" id="pitch-submit" type="submit" disabled>Build slide outline</button></div>
+          <p class="notice" role="status" id="pitch-status" hidden></p>
+        </form>
+        <div id="pitch-result" class="financial-list" aria-live="polite" hidden>
+          <div class="pitch-controls">
+            <button class="chip" id="pitch-export" type="button">Download slide outline</button>
+            <button class="chip" id="pitch-prompts" type="button">Download image prompts</button>
+          </div>
+          <div class="record">
+            <label for="pitch-hf-token">Hugging Face access token for images</label>
+            <input id="pitch-hf-token" type="password" autocomplete="off" spellcheck="false" maxlength="2048" placeholder="hf_…">
+            <p>Illustrations use your Hugging Face ZeroGPU quota. The token stays in this tab until you clear it or close the page.</p>
+            <button class="link" id="pitch-clear-token" type="button">Clear token</button>
+          </div>
+          <div id="pitch-slides" class="financial-list"></div>
+        </div>
+        <details class="details pitch-guide">
+          <summary>Image generation on Hugging Face</summary>
+          <p>Generate wide illustrations with FLUX.2 Klein 4B using your image prompt. Use real screenshots, approved logos, and sourced charts on evidence slides.</p>
+        </details>
+      </section>
+    </section>
+    <section id="funding" class="workspace-page" data-workspace-page aria-label="Funding" hidden>
+      <nav class="feature-nav" aria-label="Funding">
+        <a href="#loans" data-feature-link="loans">Loans</a>
+        <a href="#angel-investors" data-feature-link="angel-investors">Angel Investors</a>
+      </nav>
+      <section id="loans" class="section finance" data-workspace-feature aria-labelledby="loan-title">
+        <div class="section-head">
+          <div><h2 id="loan-title">Find loan providers</h2><p>Browse financial institutions and loan directories by country.</p></div>
+        </div>
+        <div class="loan-tabs" role="tablist" aria-label="Loan sources">
+          <button type="button" class="chip" role="tab" id="loan-tab-fintable" aria-selected="true" aria-controls="loans-fintable">Fintable</button>
+          <button type="button" class="chip" role="tab" id="loan-tab-more" aria-selected="false" aria-controls="loans-more" tabindex="-1">More Sources</button>
+        </div>
+        <div id="loans-fintable" role="tabpanel" aria-labelledby="loan-tab-fintable">
+          <form id="loans-fintable-form" class="search-card">
+            <div class="loan-controls">
+              <div><label for="loans-fintable-country">Country</label>
+                <select id="loans-fintable-country" required disabled><option value="">Select a country</option></select></div>
+              <div><label for="loans-fintable-query">Institution name <small>Optional</small></label>
+                <input id="loans-fintable-query" type="search" minlength="3" maxlength="96" placeholder="Search by name or leave blank"></div>
+              <button type="submit" class="primary" id="loans-fintable-submit" disabled>Find institutions</button>
+            </div>
+            <p class="loan-caption">Fintable lists institutions with banking data integrations. <a href="https://fintable.io/coverage" target="_blank" rel="noopener noreferrer">Open Fintable directory</a></p>
+          </form>
+          <p class="notice" id="loans-fintable-status" role="status" hidden></p>
+          <div id="loans-fintable-results" class="record loan-result-set" aria-live="polite"></div>
+          <button type="button" class="chip" id="loans-fintable-next" hidden>Next results</button>
+        </div>
+        <div id="loans-more" role="tabpanel" aria-labelledby="loan-tab-more" hidden>
+          <div class="search-card">
+            <div class="loan-controls">
+              <div><label for="loans-more-country">Country</label>
+                <select id="loans-more-country" disabled><option value="">Select a country</option></select></div>
+              <div><label for="loans-kind">Loan type</label>
+                <select id="loans-kind"><option value="both">Personal and business</option><option value="personal">Personal</option><option value="business">Business</option></select></div>
+            </div>
+            <p class="loan-caption">Registers list institutions by their published scope. Confirm current loan products and rates with the provider.</p>
+          </div>
+          <p class="notice" id="loans-more-status" role="status" hidden></p>
+          <div id="loans-more-results" class="financial-list loan-result-set"></div>
+        </div>
+      </section>
+      <section id="angel-investors" class="section finance" data-workspace-feature aria-labelledby="investor-title" hidden>
+        <div class="section-head">
+          <div><h2 id="investor-title">Find angel investors</h2>
+            <p>Match your idea to the investment sectors listed in the workbook.</p></div>
+        </div>
+        <form id="investor-form" class="search-card">
+          <label for="investor-idea">Product or service idea</label>
+          <textarea id="investor-idea" rows="3" maxlength="2000" placeholder="An educational game that helps teenagers learn about local history"></textarea>
+          <button type="button" id="investor-copy-idea" class="link" hidden>Use my Ideation text</button>
+          <details id="investor-sector-panel" class="details investor-sector-panel">
+            <summary>Choose investment sectors</summary>
+            <div id="investor-sectors" class="investor-sectors"></div>
+            <p>Set sectors manually or let the app suggest them from your idea.</p>
+          </details>
+          <div class="investor-actions">
+            <div id="investor-filter" hidden>
+              <label for="investor-query">Filter by investor or firm</label>
+              <input id="investor-query" type="search" maxlength="100">
+            </div>
+            <button type="submit" id="investor-submit" class="primary" disabled>Find angel investors</button>
+          </div>
+        </form>
+        <p id="investor-sector-info" class="notice" hidden></p>
+        <p id="investor-status" class="notice" role="status" tabindex="-1" hidden></p>
+        <div id="investor-results" class="financial-list"></div>
+        <nav id="investor-pagination" class="investor-pagination" aria-label="Investor results pages" hidden>
+          <button type="button" id="investor-prev" class="chip">Previous page</button>
+          <button type="button" id="investor-next" class="chip">Next page</button>
+        </nav>
+        <p id="investor-source-label" class="investor-source-label"></p>
+        <p class="investor-source-label">Workbook sectors indicate potential fit. Check current investment activity and contact details with the investor.</p>
+      </section>
+    </section>
+    <section id="incorporation" class="workspace-page" data-workspace-page aria-labelledby="incorporation-title" hidden>
+      <div class="section-head">
+        <div><h2 id="incorporation-title">Incorporation</h2>
+          <p>Look up business structures, requirements, registration, compliance and dissolution by country.</p></div>
+      </div>
+      <div class="search-card">
+        <div class="loan-controls">
+          <div><label for="incorporation-country">Country</label>
+            <select id="incorporation-country" disabled><option value="">Select a country</option></select></div>
+          <div><label for="incorporation-topic">Workbook topic</label>
+            <select id="incorporation-topic" disabled><option value="">All topics</option></select></div>
+        </div>
+        <p id="incorporation-status" class="notice" role="status">Choose a country to load its requirements and sources.</p>
+        <p id="incorporation-scope" class="inc-reference" hidden></p>
+      </div>
+      <div id="incorporation-workbook" class="section" hidden>
+        <div class="section-head inc-section-head">
+          <div><h3>Workbook findings</h3><p id="incorporation-workbook-label"></p></div>
+          <a href="#incorporation-live">Live source results</a>
+        </div>
+        <div id="incorporation-entries"></div>
+        <details class="details" id="incorporation-gaps" hidden>
+          <summary>Coverage gaps listed in the workbook</summary>
+          <ul id="incorporation-gap-list"></ul>
+        </details>
+      </div>
+      <section id="incorporation-live" class="section" aria-labelledby="incorporation-live-title" hidden>
+        <div class="section-head inc-section-head">
+          <div><h3 id="incorporation-live-title">Live source results</h3>
+            <p id="incorporation-live-status" role="status"></p></div>
+        </div>
+        <div id="incorporation-live-results" class="financial-list"></div>
+      </section>
+    </section>
+    <section id="sources" class="workspace-page section finance" data-workspace-page aria-labelledby="sources-title" hidden>
+      <div class="section-head"><div><h2 id="sources-title">Data sources</h2><p>See which product, service and financial research sources are configured.</p></div></div>
+      <div id="source-content" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="container"><span>Mr Financer</span><a href="#lookup">Back to idea search ↑</a></footer>
+  <dialog id="company-research" class="company-drawer" aria-labelledby="company-research-title">
+    <div class="company-drawer-header">
+      <div>
+        <p class="company-drawer-label">Company research</p>
+        <h2 id="company-research-title"></h2>
+        <div id="company-research-site"></div>
+      </div>
+      <form method="dialog"><button class="link company-close" aria-label="Close company research" autofocus>Close</button></form>
+    </div>
+    <div id="company-research-content" class="company-drawer-body"></div>
+    <p class="company-drawer-status" id="company-research-status" role="status" hidden></p>
+  </dialog>
+</body>
+</html>

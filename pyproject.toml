@@ -1,0 +1,47 @@
+[project]
+name = "mr-financer"
+version = "0.1.0"
+description = "A business research workspace for comparing products, planning a business, and exploring funding."
+readme = "README.md"
+authors = [{name = "Vivek Chakraverty"}]
+requires-python = ">=3.11"
+dependencies = [
+    "httpx[socks]>=0.27.0",
+    "playwright>=1.52,<2",
+    "openpyxl>=3.1,<4",
+    "pypdf>=5,<8",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.3.0",
+    "typer>=0.12.0",
+    "rich>=13.7.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.2.0",
+    "rapidfuzz>=3.9.0",
+    "fastapi>=0.111.0",
+    "uvicorn>=0.30.0",
+]
+
+[project.optional-dependencies]
+places = ["duckdb>=1.2.0", "pyiceberg[pyarrow]>=0.10.0"]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "respx>=0.21.0",
+]
+
+[project.scripts]
+mrfinancer = "mrfinancer.cli:app"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mrfinancer = ["web/*.html", "web/*.css", "web/*.js", "web/*.json", "web/*.md", "web/*.png", "web/*.ico", "data/incorporation.json.gz"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

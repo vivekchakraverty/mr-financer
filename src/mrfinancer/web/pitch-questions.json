@@ -1,0 +1,599 @@
+[
+  {
+    "title": "Cover and context",
+    "topics": [
+      {
+        "id": "cover",
+        "title": "Company in one sentence",
+        "priority": 0,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "cover.name",
+            "label": "What is the company or project name?",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "cover.promise",
+            "label": "Describe what you sell, who it serves, and the main outcome in one sentence.",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "cover.contact",
+            "label": "What public website or contact should appear on the deck?",
+            "type": "url",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "why_now",
+        "title": "Why now",
+        "priority": 8,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "why_now.change",
+            "label": "What changed recently in technology, buyer behavior, cost, or regulation?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "why_now.timing",
+            "label": "Why does that change make this the right time to build or buy?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "vision",
+        "title": "Long-term vision",
+        "priority": 21,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "vision.future",
+            "label": "If this works, what changes for customers in three to five years?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "vision.expansion",
+            "label": "What adjacent markets or uses could follow, and what must be true first?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Problem and product",
+    "topics": [
+      {
+        "id": "problem",
+        "title": "Customer problem",
+        "priority": 0,
+        "visual": "problem",
+        "questions": [
+          {
+            "id": "problem.buyer",
+            "label": "Who uses the product, who pays for it, and who approves the purchase?",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "problem.pain",
+            "label": "What specific job is hard today? How often does it occur and what does it cost?",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "problem.workaround",
+            "label": "What do customers do now? What workaround have you observed firsthand?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "solution",
+        "title": "Product and value",
+        "priority": 1,
+        "visual": "solution",
+        "questions": [
+          {
+            "id": "solution.workflow",
+            "label": "What are the main steps from starting to getting the result?",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "solution.benefit",
+            "label": "What measurable improvement can you show or test? Give the baseline, target, unit and date if known.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "solution.availability",
+            "label": "Which capabilities are available today, planned, or still experimental?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "demo",
+        "title": "Product demonstration",
+        "priority": 7,
+        "visual": "real",
+        "questions": [
+          {
+            "id": "demo.demo_link",
+            "label": "Which screenshot, prototype, video or sample can recipients open?",
+            "type": "url",
+            "core": false
+          },
+          {
+            "id": "demo.demo_moment",
+            "label": "Which moment in the demo shows the customer outcome?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "demo.asset_state",
+            "label": "Is the visual a live product, prototype, mockup or illustrative concept?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "evidence",
+        "title": "Customer evidence",
+        "priority": 10,
+        "visual": "real",
+        "questions": [
+          {
+            "id": "evidence.interviews",
+            "label": "How many buyer interviews or pilots did you complete, over what period, and what did they validate?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "evidence.customer_proof",
+            "label": "What named customer or quote may you share, and what result can you substantiate?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Market and business model",
+    "topics": [
+      {
+        "id": "market",
+        "title": "Market opportunity",
+        "priority": 0,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "market.segment",
+            "label": "Which customer segment and geography come first?",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "market.buyer_count",
+            "label": "How many eligible buyers can you identify? Give the geographic scope and method.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "market.market_price",
+            "label": "What annual spend per qualifying buyer did you measure or assume? Include currency and unit.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "market.market_bound",
+            "label": "What share is reachable through your initial channels and over what period?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "competition",
+        "title": "Competition and differentiation",
+        "priority": 2,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "competition.alternatives",
+            "label": "Name the direct competitors and indirect substitutes buyers actually consider.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "competition.relative",
+            "label": "On which two buying criteria are you stronger or weaker? Give evidence and known price differences.",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "model",
+        "title": "How the business makes money",
+        "priority": 3,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "model.payer",
+            "label": "Who pays, for what unit, and how often?",
+            "type": "text",
+            "core": true
+          },
+          {
+            "id": "model.pricing",
+            "label": "What are the current or proposed prices, tiers and currencies?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "model.sales_cycle",
+            "label": "How are contracts renewed, and how long does a sale usually take?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "economics",
+        "title": "Unit economics",
+        "priority": 13,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "economics.unit_cost",
+            "label": "What is the delivery cost per unit, including variable fees?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "economics.acquisition_cost",
+            "label": "What does it cost to acquire a paying customer, and how was that calculated?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "economics.retention_cost",
+            "label": "What retention, repeat purchase or payback data do you have? Include cohort and period.",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "advantage",
+        "title": "Defensibility",
+        "priority": 14,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "advantage.edge",
+            "label": "What durable advantage do you own or control today?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "advantage.dependencies",
+            "label": "Which partners, suppliers, data rights, or technology dependencies could weaken it?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "channels",
+        "title": "Go-to-market",
+        "priority": 5,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "channels.route",
+            "label": "Which sales channel will reach your first customers, and how does a lead become a sale?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "channels.channel_test",
+            "label": "What channel test, budget, target and decision date have you set?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "channels.conversion",
+            "label": "How many leads accepted a demo or converted into paid customers in the measured period?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Evidence, team and execution",
+    "topics": [
+      {
+        "id": "traction",
+        "title": "Traction and progress",
+        "priority": 0,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "traction.stage",
+            "label": "What stage have you reached and when?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "traction.actuals",
+            "label": "List paid customers, revenue, growth, usage or retention. Give a period, units and source for each figure.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "traction.validation",
+            "label": "If pre-launch, what observable proof do you have, such as a paid pilot, waitlist, or signed letter of intent?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "team",
+        "title": "Team and ownership",
+        "priority": 4,
+        "visual": "real",
+        "questions": [
+          {
+            "id": "team.founders",
+            "label": "Who are the founders and leads? For each, give their role and relevant experience.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "team.roles",
+            "label": "Who owns product, delivery, sales and finance? Which roles are open?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "operations",
+        "title": "Delivery and operations",
+        "priority": 15,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "operations.delivery",
+            "label": "How do you deliver to a customer, and where does the process slow down?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "operations.capacity",
+            "label": "What can the current team deliver per month? Include resources and the main constraint.",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "roadmap",
+        "title": "Roadmap and milestones",
+        "priority": 9,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "roadmap.short",
+            "label": "What will you finish in the next ninety days? Include owners, dates and measurable outcomes.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "roadmap.medium",
+            "label": "Which milestones matter over the next twelve to eighteen months and what unlocks each?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "risks",
+        "title": "Risks and mitigations",
+        "priority": 16,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "risks.risk",
+            "label": "What could go wrong with demand, costs, distribution, compliance or supply?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "risks.mitigation",
+            "label": "Which action, owner and trigger will you use to manage each material risk?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "partnerships",
+        "title": "Partners and distribution proof",
+        "priority": 17,
+        "visual": "real",
+        "questions": [
+          {
+            "id": "partnerships.partners",
+            "label": "Which partners are signed, piloting, in discussion, or targets? Which can be named?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "partnerships.partner_role",
+            "label": "What does each partner provide and what proof or milestone is available?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Financials and the ask",
+    "topics": [
+      {
+        "id": "finance",
+        "title": "Financial outlook",
+        "priority": 0,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "finance.period",
+            "label": "What currency and period does the forecast cover?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "finance.forecast",
+            "label": "Which assumptions most affect revenue, margin and cash? Give base and downside figures if available.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "finance.cash",
+            "label": "How much cash is available and when could it run low? Include the model date.",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "ask",
+        "title": "The ask and next step",
+        "priority": 6,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "ask.request",
+            "label": "What exact action should this audience take? For funding, include amount, currency and instrument if known.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "ask.next_step",
+            "label": "What decision date, meeting, pilot, or follow-up should recipients agree to?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "funding_use",
+        "title": "Use of funds",
+        "priority": 11,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "funding_use.allocation",
+            "label": "How will funds be allocated? Give amounts or percentages and the milestone each item buys.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "funding_use.runway",
+            "label": "What runway would it buy, under which assumptions?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "funding_use.committed",
+            "label": "Which funds are committed or still being discussed?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "sensitivity",
+        "title": "Downside scenario",
+        "priority": 18,
+        "visual": "data",
+        "questions": [
+          {
+            "id": "sensitivity.drivers",
+            "label": "Which assumptions change in a downside case, and how do cash and delivery respond?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "sensitivity.actions",
+            "label": "What expenses or timing could change, and at what trigger?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "sources",
+        "title": "Sources and diligence",
+        "priority": 19,
+        "visual": "real",
+        "questions": [
+          {
+            "id": "sources.diligence",
+            "label": "Which investor-accessible links support the main numbers? Give the metric, period and document owner.",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "sources.open_items",
+            "label": "Which inputs are estimates or unknown, and what will you validate next?",
+            "type": "text",
+            "core": false
+          }
+        ]
+      },
+      {
+        "id": "close",
+        "title": "Closing message",
+        "priority": 20,
+        "visual": "concept",
+        "questions": [
+          {
+            "id": "close.takeaway",
+            "label": "What single idea should the audience remember?",
+            "type": "text",
+            "core": false
+          },
+          {
+            "id": "close.public_contact",
+            "label": "What public contact or landing page can recipients use?",
+            "type": "url",
+            "core": false
+          }
+        ]
+      }
+    ]
+  }
+]

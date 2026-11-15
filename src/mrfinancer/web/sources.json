@@ -1,0 +1,234 @@
+{
+  "discovery": [
+    {
+      "name": "OpenCorporates",
+      "url": "https://api.opencorporates.com/documentation/API-Reference"
+    },
+    {
+      "name": "Companies House",
+      "url": "https://developer.company-information.service.gov.uk/"
+    },
+    {
+      "name": "Yelp Fusion",
+      "url": "https://docs.developer.yelp.com/docs/getting-started"
+    },
+    {
+      "name": "OpenStreetMap / Overpass API",
+      "url": "https://wiki.openstreetmap.org/wiki/Overpass_API"
+    },
+    {
+      "name": "Wikidata",
+      "url": "https://www.wikidata.org/wiki/Wikidata:Data_access"
+    },
+    {
+      "name": "GLEIF LEI API",
+      "url": "https://www.gleif.org/en/lei-data/gleif-api/"
+    },
+    {
+      "name": "Common Crawl",
+      "url": "https://index.commoncrawl.org/"
+    },
+    {
+      "name": "SEC EDGAR APIs",
+      "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces"
+    },
+    {
+      "name": "SAM.gov Entity Management API",
+      "url": "https://open.gsa.gov/api/entity-api/"
+    },
+    {
+      "name": "SAM.gov Opportunities API",
+      "url": "https://open.gsa.gov/api/opportunities-api/"
+    },
+    {
+      "name": "EU TED Search API",
+      "url": "https://docs.ted.europa.eu/api/latest/search.html"
+    },
+    {
+      "name": "Mexico DENUE / INEGI",
+      "url": "https://en.www.inegi.org.mx/servicios/api_denue.html"
+    },
+    {
+      "name": "France SIRENE / INSEE",
+      "url": null
+    },
+    {
+      "name": "Norway Enhetsregisteret / Brønnøysundregistrene",
+      "url": "https://data.brreg.no/enhetsregisteret/api/dokumentasjon/en/index.html"
+    },
+    {
+      "name": "Finland PRH Open Data",
+      "url": "https://avoindata.prh.fi/en/info/swagger-ui"
+    },
+    {
+      "name": "Australia ABN Lookup",
+      "url": "https://abr.business.gov.au/Documentation/Default"
+    },
+    {
+      "name": "Data.gov",
+      "url": "https://resources.data.gov/catalog-api/"
+    },
+    {
+      "name": "data.europa.eu",
+      "url": "https://data.europa.eu/api/hub/search/"
+    },
+    {
+      "name": "data.gov.sg",
+      "url": "https://guide.data.gov.sg/developer-guide/api-overview"
+    },
+    {
+      "name": "data.gov.in",
+      "url": "https://www.data.gov.in/help"
+    },
+    {
+      "name": "data.govt.nz",
+      "url": "https://www.data.govt.nz/catalogue-guide/using-data-govt-nz-apis/about-data-govt-nz-apis"
+    },
+    {
+      "name": "Canada Open Government",
+      "url": "https://open.canada.ca/en/access-our-application-programming-interface-api"
+    },
+    {
+      "name": "data.gouv.fr",
+      "url": "https://guides.data.gouv.fr/api-de-data.gouv.fr/reference"
+    },
+    {
+      "name": "Germany GovData",
+      "url": "https://www.govdata.de/sparql-assistent"
+    },
+    {
+      "name": "Crunchbase",
+      "url": "https://data.crunchbase.com/docs/api-essentials"
+    },
+    {
+      "name": "G2",
+      "url": "https://documentation.g2.com/docs/g2-api"
+    },
+    {
+      "name": "G2 Partner API",
+      "url": "https://documentation.g2.com/docs/developer-portal"
+    },
+    {
+      "name": "Wellfound / former AngelList Talent",
+      "url": null
+    },
+    {
+      "name": "AngelList",
+      "url": null
+    },
+    {
+      "name": "Capterra",
+      "url": null
+    }
+  ],
+  "financial": [
+    {
+      "name": "GLEIF Global LEI Index",
+      "url": "https://www.gleif.org/en/lei-data/gleif-api/"
+    },
+    {
+      "name": "OpenCorporates",
+      "url": "https://api.opencorporates.com/documentation/API-Reference"
+    },
+    {
+      "name": "Eurostat Structural Business Statistics",
+      "url": "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started"
+    },
+    {
+      "name": "OECD Financing SMEs and Entrepreneurs Scoreboard",
+      "url": "https://www.oecd.org/en/data/insights/data-explainers/2024/09/api.html"
+    },
+    {
+      "name": "World Bank Entrepreneurship Database",
+      "url": null
+    },
+    {
+      "name": "World Bank Enterprise Surveys",
+      "url": null
+    },
+    {
+      "name": "CORDIS",
+      "url": "https://cordis.europa.eu/about/dataextractions-api"
+    },
+    {
+      "name": "UK Companies House Accounts Data Product",
+      "url": null
+    },
+    {
+      "name": "Finland PRH Open Data",
+      "url": "https://avoindata.prh.fi/en/info/swagger-ui"
+    },
+    {
+      "name": "Denmark CVR / Virk",
+      "url": null
+    },
+    {
+      "name": "Estonia e-Business Register Open Data",
+      "url": "https://avaandmed.ariregister.rik.ee/en/open-data-api/introduction-api-services"
+    },
+    {
+      "name": "Latvia Enterprise Register",
+      "url": "https://www.ur.gov.lv/en/registry-api-web-services-service-list"
+    },
+    {
+      "name": "Lithuania Centre of Registers financial-statement open data",
+      "url": "https://data.gov.lt/datasets/1806/?resource_version=1400"
+    },
+    {
+      "name": "Poland National Court Register (KRS) Open API",
+      "url": "https://prs.ms.gov.pl/krs/openApi"
+    },
+    {
+      "name": "Poland Repository / Browser of Financial Documents",
+      "url": null
+    },
+    {
+      "name": "Czech ARES",
+      "url": "https://mf.gov.cz/cs/ministerstvo/informacni-systemy/ares"
+    },
+    {
+      "name": "SBIR/STTR",
+      "url": "https://www.sbir.gov/api"
+    },
+    {
+      "name": "USAspending.gov",
+      "url": "https://api.usaspending.gov/"
+    },
+    {
+      "name": "NIH RePORTER",
+      "url": "https://api.reporter.nih.gov/"
+    },
+    {
+      "name": "Corporations Canada Federal Corporation API",
+      "url": "https://api.ised-isde.canada.ca/en/docs?api=corporations"
+    },
+    {
+      "name": "Japan EDINET",
+      "url": "https://disclosure2dl.edinet-fsa.go.jp/guide/static/disclosure/WEEK0060.html"
+    },
+    {
+      "name": "Singapore ACRA Open Data / data.gov.sg",
+      "url": "https://guide.data.gov.sg/developer-guide/"
+    },
+    {
+      "name": "Australia ABN Lookup",
+      "url": "https://abr.business.gov.au/Tools/WebServices"
+    },
+    {
+      "name": "New Zealand NZBN",
+      "url": "https://portal.api.business.govt.nz/api/nzbn"
+    },
+    {
+      "name": "Brazil Receita Federal CNPJ Open Data",
+      "url": null
+    },
+    {
+      "name": "Chile CMF / BEST+",
+      "url": "https://best.cmfchile.cl/"
+    },
+    {
+      "name": "Mexico SIEM Open Data",
+      "url": null
+    }
+  ]
+}
