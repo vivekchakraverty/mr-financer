@@ -84,6 +84,12 @@ def stop(process):
     if process.poll() is not None:
         return
     if os.name == "nt":
+        try:
+            process.send_signal(signal.CTRL_BREAK_EVENT)
+            process.wait(timeout=10)
+            return
+        except (OSError, subprocess.TimeoutExpired):
+            pass
         subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"],
                        stdout=subprocess.DEVNULL, check=False, timeout=15)
     else:
@@ -93,7 +99,8 @@ def stop(process):
 
 def main():
     executable, version = Path(sys.argv[1]).resolve(), sys.argv[2]
-    with tempfile.TemporaryDirectory() as tmp:
+    # A just-terminated executable or scanner can briefly retain a Windows DLL handle.
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=os.name == "nt") as tmp:
         cwd = Path(tmp)
         unpack = cwd / "runtime"
         unpack.mkdir()
@@ -110,6 +117,7 @@ def main():
             process = subprocess.Popen(
                 [str(executable), "--no-browser", "--port", str(port)], cwd=cwd,
                 env=env, stdout=output, stderr=subprocess.STDOUT, start_new_session=os.name != "nt",
+                creationflags=subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0,
             )
             try:
                 with httpx.Client(base_url=url, trust_env=False, timeout=8) as client:
