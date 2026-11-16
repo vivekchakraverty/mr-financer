@@ -20,6 +20,7 @@
         <a href="#documents" data-page-link="documents">Documents</a>
         <a href="#funding" data-page-link="funding">Funding</a>
         <a href="#incorporation" data-page-link="incorporation">Incorporation</a>
+        <a href="#learn" data-page-link="learn">Learn</a>
         <a href="#sources" data-page-link="sources">Data Sources</a>
       </nav>
     </div>
@@ -283,6 +284,40 @@
         </div>
         <div id="incorporation-live-results" class="financial-list"></div>
       </section>
+    </section>
+    <section id="learn" class="workspace-page" data-workspace-page aria-labelledby="learn-title" hidden>
+      <div class="learn-hero">
+        <div>
+          <h1 id="learn-title">Learn founder skills</h1>
+          <p>Watch a lesson, practice on a business idea, and take a fresh quiz.</p>
+        </div>
+        <div class="learn-progress">
+          <strong id="learn-progress">Course progress</strong>
+          <progress id="learn-track" value="0" max="72" aria-label="Lessons mastered"></progress>
+          <span id="learn-attempt-count"></span>
+        </div>
+      </div>
+      <details id="learn-access" class="details learn-access">
+        <summary>Connect quiz service</summary>
+        <p id="learn-token-note">Enter a Hugging Face read token to connect to the quiz service. The page keeps the token in memory until you reload.</p>
+        <label for="learn-token">Hugging Face token</label>
+        <input id="learn-token" type="password" maxlength="2048" autocomplete="off" spellcheck="false" placeholder="hf_…">
+      </details>
+      <p id="learn-course-status" class="notice" role="status" hidden></p>
+      <div class="learn-layout">
+        <nav id="learn-topics" aria-label="Course topics"></nav>
+        <div class="learn-mobile-topics" hidden id="learn-mobile-topics">
+          <label for="learn-topic-select">Course topic</label>
+          <select id="learn-topic-select"></select>
+        </div>
+        <section id="learn-topic" aria-label="Current topic" hidden></section>
+      </div>
+      <p id="learn-quiz-status" class="notice" role="status" hidden></p>
+      <section id="learn-quiz" class="section" aria-label="Quiz and result" hidden></section>
+      <details id="learn-history" class="details learn-history">
+        <summary>Quiz history</summary>
+        <div id="learn-history-content"></div>
+      </details>
     </section>
     <section id="sources" class="workspace-page section finance" data-workspace-page aria-labelledby="sources-title" hidden>
       <div class="section-head"><div><h2 id="sources-title">Data sources</h2><p>See which product, service and financial research sources are configured.</p></div></div>

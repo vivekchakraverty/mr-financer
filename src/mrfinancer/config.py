@@ -30,6 +30,11 @@ class Settings(BaseSettings):
     investor_directory: Path | None = None
     pitch_image_space_url: str = "https://vivekchakraverty-mr-financer-pitch-images.hf.space"
     business_plan_space_url: str = "https://vivekchakraverty-mr-financer-business-plan.hf.space"
+    learn_space_url: str = "https://vivekchakraverty-mr-financer-learn.hf.space"
+    learn_space_token: str | None = Field(default=None, repr=False)
+    learn_database: Path = Path(".mrfinancer-learn.sqlite")
+    learn_yt_dlp: str = "yt-dlp"
+    learn_collect_comments: bool = True
     trustpilot_api_key: str | None = Field(default=None, repr=False)
     google_places_api_key: str | None = Field(default=None, repr=False)
     g2_api_key: str | None = Field(default=None, repr=False)

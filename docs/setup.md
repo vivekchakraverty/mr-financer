@@ -16,6 +16,7 @@ Copy `.env.example` to `.env` and configure the connectors you need. The **Data 
 | Financial registries | Optional Companies House, OpenDART and INPI credentials. Set `MRF_SEC_CONTACT` for SEC requests |
 | Company reviews | Set the optional Trustpilot, Google Places and G2 settings when entitled to those APIs |
 | Business Plan and pitch imagery | Set `MRF_BUSINESS_PLAN_SPACE_URL` and `MRF_PITCH_IMAGE_SPACE_URL` for your Spaces. Enter your Hugging Face token in the app when requested |
+| Learn | Install yt-dlp on your PATH and enter a Hugging Face read token under **Learn → Connect quiz service**. Set `MRF_LEARN_SPACE_URL` to use another quiz service |
 | Headless browser | The Windows launcher installs Chromium. For manual setup use `python -m playwright install chromium` |
 | Browser egress | Set `MRF_LOAN_BROWSER_PROXY` or `MRF_INCORPORATION_BROWSER_PROXY` if your installation uses a source-specific proxy |
 

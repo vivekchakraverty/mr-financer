@@ -1,0 +1,928 @@
+{
+  "schema_version": "1.0",
+  "course_title": "Founder Business Skills Curriculum",
+  "default_language": "en",
+  "target_topic_count": 24,
+  "target_video_count": 72,
+  "target_reviewed_question_count": 720,
+  "pilot_topic_ids": [
+    "T02",
+    "T07",
+    "T14"
+  ],
+  "discovery_note": "These search briefs have not been run. Confirm territory and jurisdiction for local topics, verify video and transcript eligibility, and record selections only after editorial review.",
+  "topics": [
+    {
+      "topic_id": "T01",
+      "phase": 1,
+      "title": "Set your founder goals",
+      "learning_outcome": "Choose a business direction you can test within your time, budget, and risk limits.",
+      "video_slots": [
+        {
+          "slot_id": "T01-V1",
+          "brief_title": "Choose what you want to build",
+          "coverage_to_check": "Compare self-employment, a small team funded by customers, and a startup designed for rapid growth. Explain what each asks of its founder.",
+          "seed_query": "solopreneur vs bootstrapped business vs venture startup beginner",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T01-V2",
+          "brief_title": "Find problems you are positioned to solve",
+          "coverage_to_check": "Inventory your skills, customer access, and constraints. Rank three problems by frequency, consequences, and your ability to reach buyers.",
+          "seed_query": "find startup ideas problem founder market fit examples",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T01-V3",
+          "brief_title": "Build your weekly founder routine",
+          "coverage_to_check": "Show how to set a spending ceiling, protect personal income, schedule customer contact, and keep a decision log. Use a pre-mortem to spot likely causes of failure.",
+          "seed_query": "solo founder weekly planning time budget risk exercise",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Score three ideas on camera. Choose one and show why a tempting higher-risk idea is deferred.",
+      "learner_assignment": "Write a founder brief: goal, audience, three candidate problems, time and money limits, off-hours boundaries, and one seven-day action.",
+      "assignment_check": "A reviewer can tell what you will test, what you can afford to lose, and what would make you stop."
+    },
+    {
+      "topic_id": "T02",
+      "phase": 1,
+      "title": "Interview potential customers",
+      "learning_outcome": "Find out how a specific customer experiences a problem and handles it today.",
+      "video_slots": [
+        {
+          "slot_id": "T02-V1",
+          "brief_title": "Define a customer you can reach",
+          "coverage_to_check": "Segment by shared context and need. Separate the user, buyer, and decision maker. Write a screener based on behavior.",
+          "seed_query": "startup customer discovery identify target customer user buyer interview",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T02-V2",
+          "brief_title": "Ask about the last time it happened",
+          "coverage_to_check": "Model neutral questions about trigger, steps, time, costs, and consequences. Ask permission before recording and collect only data you need.",
+          "seed_query": "startup customer discovery how to talk to users interview past behavior",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T02-V3",
+          "brief_title": "Turn interviews into evidence",
+          "coverage_to_check": "Code patterns across conversations, mark exceptions and recruitment bias, and separate observations from your interpretations. Compare interviews with surveys and observation.",
+          "seed_query": "how to synthesize user interview findings affinity mapping UX research",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Role-play one leading interview and one neutral interview. Highlight which answers could change a decision.",
+      "learner_assignment": "Interview five eligible people as a starting exercise. Capture anonymized notes and comparison points; recruit beyond friends. If access is limited, log that constraint and set a recruitment test.",
+      "assignment_check": "The brief cites specific past events, at least one contradictory observation, and a narrower customer hypothesis."
+    },
+    {
+      "topic_id": "T03",
+      "phase": 1,
+      "title": "Size the market and map alternatives",
+      "learning_outcome": "Estimate who you can reach and explain what customers would switch from.",
+      "video_slots": [
+        {
+          "slot_id": "T03-V1",
+          "brief_title": "Map real alternatives",
+          "coverage_to_check": "Include direct competitors, substitutes, in-house work, and doing nothing. Compare price, workflow, distribution, proof, and switching costs.",
+          "seed_query": "competitor alternatives analysis matrix small business example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T03-V2",
+          "brief_title": "Size the market from the bottom up",
+          "coverage_to_check": "Define total, serviceable, and realistically reachable markets. Build from a sourced customer count and annual spend or purchase rate; show an uncertainty range.",
+          "seed_query": "bottom up market sizing TAM SAM SOM worked example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T03-V3",
+          "brief_title": "Choose a starting segment",
+          "coverage_to_check": "Compare pain, access, willingness to pay, and ability to serve. Consider seasonality, technical change, industry power, and entry barriers.",
+          "seed_query": "startup beachhead market segment prioritization example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Compare two segments in a matrix, then reduce a broad market estimate to reachable accounts and realistic yearly capacity.",
+      "learner_assignment": "Compare five alternatives. Estimate two segments using visible assumptions, then select the first segment and list three things to verify.",
+      "assignment_check": "Your estimate has units, time period, and sources. The segment choice still makes sense if the high estimate is wrong."
+    },
+    {
+      "topic_id": "T04",
+      "phase": 1,
+      "title": "Design a business model",
+      "learning_outcome": "Explain how a buyer gets value, how you get paid, and what must be true for the model to work.",
+      "video_slots": [
+        {
+          "slot_id": "T04-V1",
+          "brief_title": "Trace how value becomes revenue",
+          "coverage_to_check": "Compare projects, retainers, subscriptions, per-unit sales, licenses, and commissions. Walk from offer to payment, delivery, and renewal.",
+          "seed_query": "business model revenue streams service subscription comparison beginner",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T04-V2",
+          "brief_title": "Choose where to compete",
+          "coverage_to_check": "Name the buyer, alternative, and distinctive outcome. Explain what work you will decline and how reputation, workflow fit, access, or cost can make the position durable.",
+          "seed_query": "startup competitive positioning alternatives tradeoffs explained",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T04-V3",
+          "brief_title": "Turn a plan into a test list",
+          "coverage_to_check": "Map customers, channels, activities, partners, revenue, and costs on one page. Rank assumptions by impact and uncertainty.",
+          "seed_query": "one page lean business model canvas risky assumptions walkthrough",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Turn the same customer problem into a service and a software subscription. Compare capacity, setup cost, and when cash arrives.",
+      "learner_assignment": "Draft two one-page models and choose one. Write a simple plan for the first customer, first sale, and top three tests.",
+      "assignment_check": "You can describe who pays what, what you must deliver, how you reach buyers, and the assumption most likely to invalidate the model."
+    },
+    {
+      "topic_id": "T05",
+      "phase": 2,
+      "title": "Test demand before you build",
+      "learning_outcome": "Design a small test that can tell you whether to proceed, revise, or pause.",
+      "video_slots": [
+        {
+          "slot_id": "T05-V1",
+          "brief_title": "Pick the right kind of evidence",
+          "coverage_to_check": "Match interviews, a landing page, a demo, a manual trial, or a paid pilot to the assumption. Explain why a click and a purchase support different conclusions.",
+          "seed_query": "validate a business idea interviews landing page paid pilot",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T05-V2",
+          "brief_title": "Set the decision rule first",
+          "coverage_to_check": "Choose the audience, one key measure, a time window, a budget, and a minimum result. Explain how weak recruitment and small samples limit conclusions.",
+          "seed_query": "startup experiment hypothesis success metric threshold example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T05-V3",
+          "brief_title": "Run a fair test and read the result",
+          "coverage_to_check": "Label prototypes clearly. Make terms, delivery and refunds clear before taking payment. Track who saw the offer, who acted, and what else might explain the result.",
+          "seed_query": "interpret early startup demand tests small sample example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Write a test card and apply it to three mock outcomes: promising, negative, and inconclusive.",
+      "learner_assignment": "Run one credible test within your limits. Use a realistic booking or hypothetical purchase simulation if you cannot transact; label the evidence accordingly.",
+      "assignment_check": "Record the denominator, actual behavior, cost, and next decision. Explain what would change that decision."
+    },
+    {
+      "topic_id": "T06",
+      "phase": 2,
+      "title": "Build a small and useful first version",
+      "learning_outcome": "Deliver one customer outcome using the smallest workable process or product.",
+      "video_slots": [
+        {
+          "slot_id": "T06-V1",
+          "brief_title": "Define the job and scope the pilot",
+          "coverage_to_check": "Map the customer's steps before, during, and after use. Write the outcome and acceptance criteria. Separate essential steps from later features.",
+          "seed_query": "scope an MVP customer journey acceptance criteria example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T06-V2",
+          "brief_title": "Choose a prototype and delivery method",
+          "coverage_to_check": "Compare clickable mockups, manual delivery, no-code tools, and custom development. Consider accessibility, reliability, support, and data sensitivity.",
+          "seed_query": "manual concierge MVP low fidelity prototype startup walkthrough",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T06-V3",
+          "brief_title": "Observe use and decide what to change",
+          "coverage_to_check": "Give a realistic task, watch without coaching, record blockers and success, and prioritize issues by impact and effort.",
+          "seed_query": "beginner usability test think aloud product observation example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Build a low-fidelity prototype or manual service walkthrough, then show an observed task failure and how it changes the backlog.",
+      "learner_assignment": "Deliver a pilot or guided simulation for three eligible people. Document what they achieved, how much help they needed, and two revisions.",
+      "assignment_check": "You can point to one task users completed and one failure you observed. Scope changes are tied to evidence."
+    },
+    {
+      "topic_id": "T07",
+      "phase": 2,
+      "title": "Price and package the offer",
+      "learning_outcome": "Set a defensible proposed price and check whether you can deliver profitably.",
+      "video_slots": [
+        {
+          "slot_id": "T07-V1",
+          "brief_title": "Find your price boundaries",
+          "coverage_to_check": "Estimate per-sale costs and capacity, then examine alternatives and the value of the outcome to the buyer. Account for unpaid work and common extras.",
+          "seed_query": "how to set a service price cost value alternatives example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T07-V2",
+          "brief_title": "Package a clear promise",
+          "coverage_to_check": "Compare fixed fee, tier, subscription, and usage pricing. Define inclusions, limits, payment timing, renewal, and conditions for refunds.",
+          "seed_query": "service packages tiers payment scope pricing examples",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T07-V3",
+          "brief_title": "Test willingness to pay and protect margin",
+          "coverage_to_check": "Practice making a priced offer. Model discounts, fees, returns, commissions, and founder time; compare contribution before and after a price change.",
+          "seed_query": "pricing experiment contribution margin discount worked example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Turn a vague offer into two clear packages. Show why a 10% price cut can reduce contribution by more than 10%.",
+      "learner_assignment": "Draft packages and test one price with eligible prospects. Calculate contribution per sale and estimate how many sales you can serve per month.",
+      "assignment_check": "The quote states the price and boundaries. The model reflects realistic costs and reveals whether projected volume fits your capacity."
+    },
+    {
+      "topic_id": "T08",
+      "phase": 2,
+      "title": "Position your brand and write sales copy",
+      "learning_outcome": "Explain your offer in words buyers recognize and support the promise with evidence.",
+      "video_slots": [
+        {
+          "slot_id": "T08-V1",
+          "brief_title": "Write a positioning statement",
+          "coverage_to_check": "Name the audience, their immediate need, the category, and a credible difference. Match the message to the buyer's awareness and alternatives.",
+          "seed_query": "positioning statement target customer competitor difference example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T08-V2",
+          "brief_title": "Write a page buyers can act on",
+          "coverage_to_check": "Use a concrete headline, relevant proof, expected outcome, a clear next action, and answers to likely objections. Check readability and accessibility.",
+          "seed_query": "landing page copywriting value proposition proof call to action walkthrough",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T08-V3",
+          "brief_title": "Make your brand recognizable and trustworthy",
+          "coverage_to_check": "Choose a name, voice, and simple visual system; check name and asset rights before committing. Use accurate claims and permission for testimonials.",
+          "seed_query": "small business brand voice identity credibility testimonials",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Rewrite a generic page using phrases from interviews. Run a five-second recall test and show what the reader misunderstood.",
+      "learner_assignment": "Create a one-page offer and one short pitch. Ask three eligible readers to explain what it is, who it helps, and what to do next.",
+      "assignment_check": "Readers can identify the offer and next step. Each material claim has support or is clearly framed as a hypothesis."
+    },
+    {
+      "topic_id": "T09",
+      "phase": 3,
+      "title": "Find a channel you can afford",
+      "learning_outcome": "Choose a realistic route to buyers and measure its first results.",
+      "video_slots": [
+        {
+          "slot_id": "T09-V1",
+          "brief_title": "Map how a buyer finds and chooses you",
+          "coverage_to_check": "Trace awareness, consideration, purchase, and repeat use. Define a conversion rate and choose a consistent counting window.",
+          "seed_query": "marketing funnel conversion rate worked example small business",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T09-V2",
+          "brief_title": "Compare organic and paid channels",
+          "coverage_to_check": "Compare referrals, search, local listings, content, email, communities, events, and ads. Assess access, time to results, cost, and how you will track leads.",
+          "seed_query": "marketing channels search email referral paid ads compare beginner",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T09-V3",
+          "brief_title": "Plan a two-week channel test",
+          "coverage_to_check": "Set the audience, message, asset, budget, and qualified action. Use campaign links or source tags and record time spent. Explain where attribution is uncertain.",
+          "seed_query": "two week customer acquisition test conversion tracking example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Compare two channels using a small data set. Show why a cheap click can be an expensive lead.",
+      "learner_assignment": "Run one narrowly scoped campaign or manual outreach test. Record reach, responses, qualified leads, time, and cash spent.",
+      "assignment_check": "You can trace the measured outcome back to an action and explain whether to continue, adjust, or pause."
+    },
+    {
+      "topic_id": "T10",
+      "phase": 3,
+      "title": "Sell and negotiate your first deal",
+      "learning_outcome": "Lead a discovery call and move a qualified buyer to a mutual next step.",
+      "video_slots": [
+        {
+          "slot_id": "T10-V1",
+          "brief_title": "Build a small sales pipeline",
+          "coverage_to_check": "Find prospects ethically. Write relevant outreach, set stages and follow-up dates, and qualify need, budget, timing, and authority.",
+          "seed_query": "founder led sales outreach qualification CRM pipeline beginner",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T10-V2",
+          "brief_title": "Lead a discovery call and a demo",
+          "coverage_to_check": "Ask about current workflow, costs, decision process, and desired outcome. Summarize in the buyer's words and demonstrate only the relevant part.",
+          "seed_query": "B2B discovery sales call and product demo role play",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T10-V3",
+          "brief_title": "Handle objections and negotiate terms",
+          "coverage_to_check": "Ask what sits behind an objection. Set a walk-away point, trade scope or timing for concessions, and confirm the written next step, proposal, and handoff.",
+          "seed_query": "negotiate price objections trade scope sales proposal role play",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Role-play a call where a buyer asks for a discount. Show how to trade for a smaller scope or faster payment and document the decision.",
+      "learner_assignment": "Role-play twice, then hold three buyer conversations if you can. Write one proposal and log next steps in a spreadsheet or customer relationship management tool.",
+      "assignment_check": "The proposal names the outcome, scope, price, timing, and buyer decision. Pipeline entries have a next action and date."
+    },
+    {
+      "topic_id": "T11",
+      "phase": 3,
+      "title": "Plan and execute a small launch",
+      "learning_outcome": "Coordinate a launch with a clear audience, a defined goal, and limits on spend and workload.",
+      "video_slots": [
+        {
+          "slot_id": "T11-V1",
+          "brief_title": "Choose a launch goal and audience",
+          "coverage_to_check": "Define what qualifies as success and who can enter first. Compare a private pilot, soft launch, and public launch.",
+          "seed_query": "soft launch vs beta vs public launch startup examples",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T11-V2",
+          "brief_title": "Plan launch operations",
+          "coverage_to_check": "Work backward from the date. Prepare messaging, delivery capacity, payment and refund paths, tracking, support, and a fallback if demand surprises you.",
+          "seed_query": "small business launch checklist payments support fulfillment walkthrough",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T11-V3",
+          "brief_title": "Run the launch review",
+          "coverage_to_check": "Compare results with targets. Diagnose lead quality, sales, onboarding, and delivery before changing the offer. Write what to repeat and what to fix.",
+          "seed_query": "product launch retrospective metrics funnel example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Walk through a test purchase and support request; show the issue that would delay the launch and how you would respond.",
+      "learner_assignment": "Build a one-week launch plan. Do a dry run or a limited release after confirming applicable requirements from module 17.",
+      "assignment_check": "Each key task has an owner and date. You can explain the release, rollback or pause criteria, and how customers will hear from you."
+    },
+    {
+      "topic_id": "T12",
+      "phase": 3,
+      "title": "Onboard and retain customers",
+      "learning_outcome": "Help buyers get their first result, recover problems, and learn why they stay or leave.",
+      "video_slots": [
+        {
+          "slot_id": "T12-V1",
+          "brief_title": "Design the first customer experience",
+          "coverage_to_check": "Map the handoff from sale to first value. Define kickoff steps, responsibilities, time to value, and how you know onboarding worked.",
+          "seed_query": "customer onboarding first value service SaaS walkthrough",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T12-V2",
+          "brief_title": "Handle support and service recovery",
+          "coverage_to_check": "Set response expectations, categorize issues, and practice a response that acknowledges the problem, states the next step, and closes the loop.",
+          "seed_query": "customer support complaint service recovery role play",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T12-V3",
+          "brief_title": "Measure retention and earn referrals",
+          "coverage_to_check": "Track repeat purchases, renewals, cancellations, and customer cohorts as appropriate. Time referral requests around delivered value; distinguish upselling from overpromising.",
+          "seed_query": "customer churn retention cohort referrals beginner example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Redesign a confusing welcome message and role-play recovering an unhappy customer without promising a fix you cannot deliver.",
+      "learner_assignment": "Write an onboarding checklist and two support responses. Define a retention metric for your model and interview a repeat, inactive, or simulated customer.",
+      "assignment_check": "Customers know what to do first, when to expect a result, and where to get help. The metric explains who counts and over what period."
+    },
+    {
+      "topic_id": "T13",
+      "phase": 4,
+      "title": "Keep the books and read the statements",
+      "learning_outcome": "Record basic transactions and explain what the core financial statements tell you.",
+      "video_slots": [
+        {
+          "slot_id": "T13-V1",
+          "brief_title": "Set up a bookkeeping routine",
+          "coverage_to_check": "Separate and document business transactions; categorize receipts, invoices, bills, and payments. Reconcile records to the bank and track overdue invoices.",
+          "seed_query": "small business bookkeeping bank reconciliation tutorial invoice payment",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T13-V2",
+          "brief_title": "Read the three financial statements",
+          "coverage_to_check": "Use a profit and loss statement to read performance, a balance sheet to read position, and a cash flow statement to trace movement. Explain cash versus accrual accounting.",
+          "seed_query": "profit loss balance sheet cash flow three statements beginner example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T13-V3",
+          "brief_title": "Close a sample month",
+          "coverage_to_check": "Classify sales, expenses, receivables, deposits, and owner contributions or draws in a simple example. Compare actual results with budget and flag items for an accountant.",
+          "seed_query": "cash accrual accounting small business sample monthly close",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Record a sale invoiced this month and paid next month. Trace what appears in each month under accrual accounting and show the cash impact.",
+      "learner_assignment": "Categorize ten sample or anonymized transactions, reconcile beginning and ending cash, and prepare a simple monthly summary.",
+      "assignment_check": "Your summary explains why invoiced revenue, profit, and bank balance can differ. You can locate the evidence for any entry."
+    },
+    {
+      "topic_id": "T14",
+      "phase": 4,
+      "title": "Forecast cash and protect runway",
+      "learning_outcome": "Predict when money could run short and decide how to respond before it does.",
+      "video_slots": [
+        {
+          "slot_id": "T14-V1",
+          "brief_title": "Build a 13-week cash forecast",
+          "coverage_to_check": "Enter beginning cash, expected collections, payments, tax reserves, inventory purchases, and owner cash needs as relevant. Carry ending cash forward.",
+          "seed_query": "13 week cash flow forecast spreadsheet worked example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T14-V2",
+          "brief_title": "Model three scenarios",
+          "coverage_to_check": "Separate payment timing from sales changes. Estimate runway only when net burn is positive and reasonably steady. Stress-test late payments and weaker demand.",
+          "seed_query": "startup cash runway downside late payment scenario",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T14-V3",
+          "brief_title": "Manage working capital",
+          "coverage_to_check": "Connect receivables, payables, and inventory to available cash. Compare deposits, payment terms, better collections, lower commitments, and financing.",
+          "seed_query": "working capital receivables payables inventory cash conversion example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Push a large payment back two weeks. Find the first week below a cash floor and compare two actions to avoid it.",
+      "learner_assignment": "Build base, downside, and upside forecasts. Set a minimum cash balance and write two actions with triggers and dates.",
+      "assignment_check": "Your forecast identifies the lowest balance and when it occurs. It states how you would respond if a key assumption fails."
+    },
+    {
+      "topic_id": "T15",
+      "phase": 4,
+      "title": "Use unit economics to make decisions",
+      "learning_outcome": "Use costs, margin, and customer behavior to decide which offers and channels warrant more investment.",
+      "video_slots": [
+        {
+          "slot_id": "T15-V1",
+          "brief_title": "Calculate contribution and break-even",
+          "coverage_to_check": "Define the unit and period. Separate fixed from variable costs, gross from contribution margin, and cash outlay from the economic cost of founder labor.",
+          "seed_query": "contribution margin break even units worked example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T15-V2",
+          "brief_title": "Measure acquisition and customer value",
+          "coverage_to_check": "Calculate customer acquisition cost for a defined channel and period. Estimate lifetime value from contribution over an explicit horizon; state limits if repeat data are sparse.",
+          "seed_query": "customer acquisition cost LTV contribution margin example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T15-V3",
+          "brief_title": "Compare opportunities with sensitivity analysis",
+          "coverage_to_check": "Change price, refunds, conversion, retention, and delivery effort. Compare a capacity-limited service with a subscription and test when each loses money.",
+          "seed_query": "unit economics price volume sensitivity analysis spreadsheet",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Build a small model with one offer and a channel. Change scope and price live and discuss margin, break-even, and available hours.",
+      "learner_assignment": "Build a unit model and compare two scenarios. Find the break-even point if contribution is positive; check whether demand and capacity can support that volume.",
+      "assignment_check": "Your calculation shows units, assumptions, and costs included. You can explain what decision changes when one input moves."
+    },
+    {
+      "topic_id": "T16",
+      "phase": 4,
+      "title": "Choose how to fund the business",
+      "learning_outcome": "Compare funding choices by cash needs, obligations, ownership, and fit with your goals.",
+      "video_slots": [
+        {
+          "slot_id": "T16-V1",
+          "brief_title": "Compare customer funding and outside capital",
+          "coverage_to_check": "Evaluate founder savings, revenue, deposits, grants, debt, and equity. Match each to timing, uncertainty, collateral or repayment, and control.",
+          "seed_query": "bootstrapping loans grants equity startup financing comparison",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T16-V2",
+          "brief_title": "Read a simple cap table and financing example",
+          "coverage_to_check": "Explain shares and dilution. Introduce option pools, convertible notes, SAFEs, and priced rounds with simplified assumptions; show why instrument terms matter.",
+          "seed_query": "founder cap table equity dilution SAFE beginner example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T16-V3",
+          "brief_title": "Prepare a lender or investor conversation",
+          "coverage_to_check": "Build a use-of-funds plan and milestones. Explain traction, risks, and the ask; distinguish a lender's repayment questions from an investor's return questions.",
+          "seed_query": "startup pitch funding ask use of funds milestones sample",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Compare debt with an equity round using sample cash flows. Show that a new investor buying 20% post-money leaves founders who owned 100% with 80% in a simple model.",
+      "learner_assignment": "Write a financing decision memo. Compare two paths, model one repayment or dilution example, and state a milestone that would justify raising money.",
+      "assignment_check": "The memo links funding to a specific cash need and states what the founder gives up. The recommended path can include waiting."
+    },
+    {
+      "topic_id": "T17",
+      "phase": 5,
+      "title": "Plan legal tax and insurance setup",
+      "learning_outcome": "Identify the obligations that apply before launch and build a calendar for keeping up with them.",
+      "video_slots": [
+        {
+          "slot_id": "T17-V1",
+          "brief_title": "Map where rules apply",
+          "coverage_to_check": "Identify where you operate, employ people, sell, hold inventory, and collect data. Research structure, registration, licenses, permits, business banking, and sector rules.",
+          "seed_query": "small business entity registration permits official local regulator beginner",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T17-V2",
+          "brief_title": "Plan tax records and deadlines",
+          "coverage_to_check": "Understand income, sales or consumption, and employment taxes at a high level. Identify registration triggers, filing dates, records, and questions to verify locally.",
+          "seed_query": "small business business tax records and filing obligations official local authority",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T17-V3",
+          "brief_title": "Review risk and insurance needs",
+          "coverage_to_check": "List harm to customers, property, income, or data. Compare how contracts, controls, and insurance affect exposure; ask about exclusions, limits, and deductibles.",
+          "seed_query": "small business insurance coverage exclusions risk example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Create an obligations register from official regulator pages for an example business. Separate confirmed items from questions for a local adviser.",
+      "learner_assignment": "Create a dated register with jurisdiction, business activity, source, status, owner, deadline and review date. List questions for a qualified local accountant, lawyer, or broker.",
+      "assignment_check": "Every launch dependency is confirmed, assigned, or a reason to pause. You can show where you verified each applicable rule."
+    },
+    {
+      "topic_id": "T18",
+      "phase": 5,
+      "title": "Protect contracts data and intellectual property",
+      "learning_outcome": "Spot common risks in customer, contractor, vendor, and data arrangements.",
+      "video_slots": [
+        {
+          "slot_id": "T18-V1",
+          "brief_title": "Read the clauses that affect the work",
+          "coverage_to_check": "Identify scope, acceptance, changes, payment, renewal, termination, liability, confidentiality, and dispute terms. Compare a proposal, statement of work, and contract.",
+          "seed_query": "small business contract scope acceptance payment termination example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T18-V2",
+          "brief_title": "Know who owns what",
+          "coverage_to_check": "Distinguish trademarks, copyright, patents, and trade secrets. Map founder and contractor contributions, licenses, and permissions; validate name and asset rights before use.",
+          "seed_query": "WIPO intellectual property basics for startups trademark copyright patent",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T18-V3",
+          "brief_title": "Map personal data and privacy obligations",
+          "coverage_to_check": "Inventory collection, purpose, access, transfers, retention, and deletion. Identify requirements for disclosures, permissions, and incident response in the relevant markets.",
+          "seed_query": "small business privacy data inventory retention workflow regulator",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Annotate a fictional agreement and trace one customer record through a simple data map. Explain who can access it and when to remove it.",
+      "learner_assignment": "Review a sample contract, inventory five business assets, and map your data. Flag issues to verify before using real contracts or customer information.",
+      "assignment_check": "You can identify unclear responsibilities, unverified rights, and data you could avoid collecting."
+    },
+    {
+      "topic_id": "T19",
+      "phase": 5,
+      "title": "Build reliable operations",
+      "learning_outcome": "Create a repeatable way to deliver, check quality, and recover from failures.",
+      "video_slots": [
+        {
+          "slot_id": "T19-V1",
+          "brief_title": "Map a process from order to delivery",
+          "coverage_to_check": "Show inputs, handoffs, bottlenecks, inventory or capacity, and done criteria. Set expectations based on actual throughput.",
+          "seed_query": "order to delivery process map small business example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T19-V2",
+          "brief_title": "Write and test a procedure",
+          "coverage_to_check": "Write a standard operating procedure with trigger, steps, quality check, and escalation path. Separate routine steps from exceptions.",
+          "seed_query": "write a standard operating procedure small business walkthrough",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T19-V3",
+          "brief_title": "Manage suppliers and interruptions",
+          "coverage_to_check": "Compare quotes, lead time, payment terms, quality, and concentration risk. Design responses for outages, sick days, stockouts, returns, and payment fraud.",
+          "seed_query": "vendor lead time procurement stockout business continuity small business",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Hand a procedure to another person cold. Capture where they get stuck and revise it. Test one failure, such as a missed shipment.",
+      "learner_assignment": "Document one revenue-critical process and test it with another person or a timed dry run. Add a vendor backup and make one failure response plan.",
+      "assignment_check": "Someone else can complete the task or identify when to escalate. You know the capacity limit and primary failure mode."
+    },
+    {
+      "topic_id": "T20",
+      "phase": 5,
+      "title": "Choose tools and use automation responsibly",
+      "learning_outcome": "Choose a small set of tools that save time while protecting the business and its customers.",
+      "video_slots": [
+        {
+          "slot_id": "T20-V1",
+          "brief_title": "Choose tools based on the work",
+          "coverage_to_check": "Compare spreadsheets, customer records, payments, invoicing, project tools, and analytics. Evaluate cost, data export, integrations, and exit options.",
+          "seed_query": "choose small business CRM invoicing project management software criteria",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T20-V2",
+          "brief_title": "Secure everyday operations",
+          "coverage_to_check": "Demonstrate multifactor authentication, access by role, updates, backup restoration, payment verification, and offboarding. Assign an incident contact and response steps.",
+          "seed_query": "small business cybersecurity MFA backup phishing payment fraud FTC",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T20-V3",
+          "brief_title": "Automate a proven workflow",
+          "coverage_to_check": "Map trigger, inputs, rules, errors, and human review. Test an AI-assisted task with sample data and check accuracy, privacy, and total effort before expanding.",
+          "seed_query": "automate business workflow human review error handling example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Create a test-only automation that makes a follow-up draft. Force an error and show review, logging, and a manual fallback.",
+      "learner_assignment": "Score two tools and prototype one low-risk automation. Measure time spent and errors in both manual and automated runs, and test a recovery step.",
+      "assignment_check": "You know who owns the tool, how to export and recover data, and when a person must review output."
+    },
+    {
+      "topic_id": "T21",
+      "phase": 6,
+      "title": "Work with people and partners",
+      "learning_outcome": "Choose how to get help and set clear responsibilities, expectations, and incentives.",
+      "video_slots": [
+        {
+          "slot_id": "T21-V1",
+          "brief_title": "Delegate to contractors or hire",
+          "coverage_to_check": "Compare workload, risk, total cost, and management time. Define a role scorecard and plan equitable interviews, onboarding, access, and feedback. Check local worker classification and payroll rules.",
+          "seed_query": "first hire vs contractor role scorecard onboarding small business",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T21-V2",
+          "brief_title": "Work out cofounder roles and conflict",
+          "coverage_to_check": "Discuss goals, time and money commitments, decision rights, equity, vesting, departure, and dispute handling. Use a written decision record and qualified review for agreements.",
+          "seed_query": "startup cofounder agreement equity vesting decision rights conflict",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T21-V3",
+          "brief_title": "Build a useful partner and adviser network",
+          "coverage_to_check": "Identify referrals, distribution, and strategic partners. Define what each contributes, how introductions work, and how results, exclusivity, and conflicts are handled.",
+          "seed_query": "small business referral partnership negotiation adviser expectations",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Role-play a founder disagreement over a hire and a contractor handoff. Resolve each using documented outcomes and decision ownership.",
+      "learner_assignment": "Write one role or partner brief with outcome, cost, trial, and review criteria. Draft a decision-rights map and rehearse a feedback conversation.",
+      "assignment_check": "The arrangement has a measurable result and an owner. You know what happens when work, ownership, or expectations change."
+    },
+    {
+      "topic_id": "T22",
+      "phase": 6,
+      "title": "Run reviews and measure progress",
+      "learning_outcome": "Build a small dashboard that connects observed results to decisions.",
+      "video_slots": [
+        {
+          "slot_id": "T22-V1",
+          "brief_title": "Choose metrics for your stage",
+          "coverage_to_check": "Choose evidence of demand before launch and add sales, delivery, retention, cash, and capacity as needed. Define each measure, source, owner, and window.",
+          "seed_query": "weekly small business KPI dashboard template explained",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T22-V2",
+          "brief_title": "Diagnose a change before acting",
+          "coverage_to_check": "Compare funnels and cohorts, check data quality, and separate volume from rate changes. Use a simple chart and consider seasonality and small samples.",
+          "seed_query": "funnel and cohort analysis conversion change example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T22-V3",
+          "brief_title": "Run a weekly and monthly review",
+          "coverage_to_check": "Review results versus plan, explain variances, and decide what to keep, stop, or test. Set next actions and dates; communicate decisions to affected people.",
+          "seed_query": "weekly business review metrics decision log founder example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Walk through a dashboard where sales rise while contribution and cash deteriorate. Pick one follow-up test and one immediate action.",
+      "learner_assignment": "Build a dashboard of five to eight measures. Run a review using actual or labeled sample data, and write a short stakeholder update.",
+      "assignment_check": "Every measure can change a decision. The update names a trend, a likely cause, an open question, and who acts next."
+    },
+    {
+      "topic_id": "T23",
+      "phase": 6,
+      "title": "Decide when and how to scale",
+      "learning_outcome": "Choose whether to deepen the current model, add capacity, or test expansion.",
+      "video_slots": [
+        {
+          "slot_id": "T23-V1",
+          "brief_title": "Check what will repeat",
+          "coverage_to_check": "Look for repeated demand, healthy contribution, retention relevant to the model, reliable delivery, and affordable acquisition. Explain which evidence is still weak.",
+          "seed_query": "is your startup ready to scale retention unit economics capacity",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T23-V2",
+          "brief_title": "Choose a growth path and test the constraint",
+          "coverage_to_check": "Compare price, capacity, channel, product, geography, and partnerships. Assess hiring, supplier, regulatory, currency, tax, and localization issues before expansion.",
+          "seed_query": "small business growth price hiring new market decision scenario",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T23-V3",
+          "brief_title": "Plan what to do if growth fails",
+          "coverage_to_check": "Set budgets and stop conditions. Explore narrowing, pivoting, pausing, succession, selling, or closing; identify commitments involving customers, staff, suppliers, and owners.",
+          "seed_query": "pivot pause succession exit strategy startup small business",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Compare a waitlist, a price increase, and an additional hire using the same demand and cash assumptions.",
+      "learner_assignment": "Write a scale, hold, or change memo. Model the cash and capacity effect of one move; name a reversible first step and a stop condition.",
+      "assignment_check": "The decision follows from demand, margin, cash, and capacity evidence. You know which result would reverse it."
+    },
+    {
+      "topic_id": "T24",
+      "phase": 6,
+      "title": "Present your plan for the next 90 days",
+      "learning_outcome": "Defend a business decision and turn it into a specific operating plan.",
+      "video_slots": [
+        {
+          "slot_id": "T24-V1",
+          "brief_title": "Tell the story with evidence",
+          "coverage_to_check": "Present the customer, the problem, the offer, what happened in tests, how money moves, and the risks. Label assumptions and missing evidence.",
+          "seed_query": "five minute founder pitch evidence risks startup example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T24-V2",
+          "brief_title": "Build a 90-day operating plan",
+          "coverage_to_check": "Set one outcome, three milestones, a budget, owners, weekly measures, and triggers to change direction. Match commitments to cash and available time.",
+          "seed_query": "90 day operating plan business milestones budget ownership example",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        },
+        {
+          "slot_id": "T24-V3",
+          "brief_title": "Rehearse a review and make the call",
+          "coverage_to_check": "Practice answering skeptical questions about demand, delivery, cash, and obligations. Use the rubric to decide whether to proceed, revise, or pause.",
+          "seed_query": "startup plan review tough founder questions cash demand",
+          "questions_required": 10,
+          "status": "pending_discovery",
+          "selected_youtube_video_id": null
+        }
+      ],
+      "preferred_demonstration": "Deliver a five-minute capstone pitch and respond to two skeptical questions. Revise one milestone when challenged.",
+      "learner_assignment": "Submit the portfolio and 90-day plan specified in the capstone. Present to a peer, adviser, or camera and revise after feedback.",
+      "assignment_check": "An outsider can trace each main claim to evidence, identify unresolved risks, and tell what you will do next week."
+    }
+  ]
+}

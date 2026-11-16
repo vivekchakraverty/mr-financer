@@ -1,6 +1,6 @@
 [project]
 name = "mr-financer"
-version = "0.1.2"
+version = "0.1.3"
 description = "A business research workspace for comparing products, planning a business, and exploring funding."
 readme = "README.md"
 authors = [{name = "Vivek Chakraverty"}]

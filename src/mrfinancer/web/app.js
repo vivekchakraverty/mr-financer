@@ -5,6 +5,7 @@ import { initializeLoans } from "./loans.js";
 import { initializeInvestors } from "./investors.js";
 import { initializeNavigation } from "./navigation.js";
 import { initializeIncorporation } from "./incorporation.js";
+import { initializeLearn } from "./learn.js";
 
 const byId = (id) => document.getElementById(id);
 const state = { search: null, size: 10, selected: new Map(), searching: false, loading: false };
@@ -402,4 +403,5 @@ async function showSources() {
 
 initializeNavigation({
   showSources, showInvestors: initializeInvestors(), showIncorporation: initializeIncorporation(),
+  showLearn: initializeLearn(),
 });

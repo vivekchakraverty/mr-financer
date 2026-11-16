@@ -11,10 +11,11 @@ const views = {
   "angel-investors": { page: "funding", feature: "angel-investors" },
   incorporation: { page: "incorporation" },
   "incorporation-live": { page: "incorporation", scroll: true },
+  learn: { page: "learn" },
   sources: { page: "sources" },
 };
 
-export function initializeNavigation({ showSources, showInvestors, showIncorporation }) {
+export function initializeNavigation({ showSources, showInvestors, showIncorporation, showLearn }) {
   const pages = [...document.querySelectorAll("[data-workspace-page]")];
   const features = [...document.querySelectorAll("[data-workspace-feature]")];
   function display() {
@@ -29,6 +30,7 @@ export function initializeNavigation({ showSources, showInvestors, showIncorpora
       if (selected) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     }
+    if (view.page === "learn") showLearn();
     if (view.page === "sources") showSources();
     if (view.page === "incorporation") showIncorporation();
     if (view.feature === "angel-investors") showInvestors();

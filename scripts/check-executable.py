@@ -27,6 +27,8 @@ const url = process.argv[2];
     if (!response.ok()) throw new Error("Could not open the packaged workspace");
     await page.locator('a[data-page-link="documents"]').click();
     await page.locator("#plan-form [data-field=idea]").waitFor({state: "visible"});
+    await page.locator('a[data-page-link="learn"]').click();
+    await page.locator("#learn-topic").getByRole("heading", {name: "Set your founder goals"}).waitFor({state: "visible"});
   } finally {
     await browser.close();
   }
@@ -39,6 +41,11 @@ def check_routes(client, version):
     assert 'id="business-plan"' in home.text
     assert client.get("/openapi.json").raise_for_status().json()["info"]["version"] == version
     assert client.get("/assets/downloads.js").raise_for_status().content
+    assert client.get("/assets/learn.js").raise_for_status().content
+    course = client.get("/learn/course").raise_for_status().json()
+    assert len(course["topics"]) == 24
+    assert all(len(topic["video_slots"]) == 3 for topic in course["topics"])
+    assert course["question_count"] == 10
     assert client.get("/incorporation/countries").raise_for_status().json()
     assert client.get("/business-plan/pitch/questions").raise_for_status().json()["groups"]
 
@@ -127,7 +134,7 @@ def main():
             finally:
                 stop(process)
                 print(log.read_text(encoding="utf-8", errors="replace"))
-    print(f"Verified {executable.name}, its browser, and PDF, DOCX, and PPTX exports.")
+    print(f"Verified {executable.name}, its browser, Learn curriculum, and PDF, DOCX, and PPTX exports.")
 
 
 if __name__ == "__main__":

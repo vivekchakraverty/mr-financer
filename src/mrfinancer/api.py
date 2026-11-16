@@ -24,6 +24,7 @@ from .pitch_export import router as pitch_export_router
 from .loans import router as loan_router
 from .investors import router as investor_router
 from .incorporation import router as incorporation_router
+from .learn import router as learn_router
 
 app = FastAPI(
     title="Mr. Financer - Product Idea",
@@ -40,6 +41,7 @@ app.include_router(pitch_export_router)
 app.include_router(loan_router)
 app.include_router(investor_router)
 app.include_router(incorporation_router)
+app.include_router(learn_router)
 
 
 class AnalyzeRequest(BaseModel):
