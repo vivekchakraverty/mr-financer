@@ -6,6 +6,8 @@ import { initializeInvestors } from "./investors.js";
 import { initializeNavigation } from "./navigation.js";
 import { initializeIncorporation } from "./incorporation.js";
 import { initializeLearn } from "./learn.js";
+import { answerFinancialQuestion, balanceSheetCompositions, chartable, financialAmount, financialBasis,
+  financialLabel, financialNumber, financialPercent, financialPeriod, financialQuestionExamples } from "./financial-analysis.js";
 
 const byId = (id) => document.getElementById(id);
 const state = { search: null, size: 10, selected: new Map(), searching: false, loading: false };
@@ -16,9 +18,6 @@ initializeLoans();
 const countries = [["", "Automatic"], ["GB", "United Kingdom"], ["US", "United States"], ["FR", "France"],
   ["NO", "Norway"], ["SK", "Slovakia"], ["KR", "South Korea"], ["IN", "India"]];
 const idLabels = { GB: "Company number", US: "SEC CIK", FR: "SIREN", NO: "Organisation number", SK: "IČO", KR: "DART corp_code" };
-const labels = { turnover: "Revenue", net_profit: "Net profit", profit_before_tax: "Profit before tax",
-  operating_profit: "Operating profit", net_assets: "Equity / net assets", total_assets: "Total assets",
-  total_liabilities: "Total liabilities", cash: "Cash", employees: "Employees" };
 const reasons = {
   not_found: "No record found", ambiguous_match: "Company identity needs confirmation",
   requires_paid_document: "Requires paid access", jurisdiction_unsupported: "Registry not connected",
@@ -184,8 +183,170 @@ function showMatches() {
   selectionChanged();
 }
 
+function financialSource(container, fact) {
+  container.append(link(fact.provenance.source_name, fact.provenance.url));
+  if (fact.issues.length) {
+    const details = element("details", null, "financial-checks");
+    details.append(element("summary", "Validation notes"));
+    for (const issue of fact.issues) details.append(element("div", issue.message));
+    container.append(details);
+  }
+}
+
+function financialPies(snapshots) {
+  const section = element("section", null, "financial-composition");
+  const picker = element("select");
+  const info = element("div", null, "financial-chart-context financial-pie-info");
+  const pies = element("div", null, "financial-pies");
+  const heading = element("div", null, "financial-composition-heading");
+  heading.append(element("h4", "Balance sheet composition"));
+  if (snapshots.length > 1) {
+    const label = element("label", "Balance sheet date");
+    for (const { assets } of snapshots) {
+      const context = [assets.period_end, assets.currency, assets.statement_scope || "Scope unstated", assets.provenance.source_name];
+      picker.append(element("option", context.join(" · ")));
+    }
+    label.append(picker);
+    heading.append(label);
+  }
+  section.append(heading, info, pies);
+
+  function show({ assets, charts }) {
+    const context = [assets.period_end, assets.statement_scope || "Scope unstated", `Total assets ${financialAmount(assets.value, assets)}`];
+    info.replaceChildren(context.join(" · "), " · ", link(assets.provenance.source_name, assets.provenance.url));
+    pies.replaceChildren();
+    for (const { title, slices } of charts) {
+      const figure = element("figure", null, "financial-pie");
+      figure.append(element("figcaption", title));
+      const disc = element("div", null, "financial-pie-disc");
+      disc.setAttribute("aria-hidden", "true");
+      disc.style.setProperty("--pie-share", `${Math.min(1, slices[0].value / assets.value) * 100}%`);
+      const legend = element("ul", null, "financial-pie-legend");
+      legend.setAttribute("role", "list");
+      for (const slice of slices) {
+        const row = element("li");
+        row.append(element("span", slice.label), element("strong", financialPercent(slice.value / assets.value)),
+          element("span", financialAmount(slice.value, assets, slice.calculated), "financial-pie-amount"));
+        legend.append(row);
+      }
+      figure.append(disc, legend);
+      pies.append(figure);
+    }
+  }
+
+  picker.addEventListener("change", () => show(snapshots[picker.selectedIndex]));
+  show(snapshots[0]);
+  return section;
+}
+
+function financialQA(facts, snapshots) {
+  const section = element("details", null, "details financial-qa");
+  section.append(element("summary", "Ask about these figures"));
+  const form = element("form");
+  const label = element("label", "Question about this company");
+  const question = element("input");
+  question.required = true;
+  question.maxLength = 180;
+  question.autocomplete = "off";
+  label.append(question);
+  const submit = element("button", "Ask", "primary");
+  submit.type = "submit";
+  const controls = element("div", null, "financial-question-controls");
+  controls.append(label, submit);
+  const examples = element("div", null, "examples");
+  for (const prompt of financialQuestionExamples(facts, snapshots)) {
+    const example = element("button", prompt, "chip");
+    example.type = "button";
+    example.addEventListener("click", () => {
+      question.value = prompt;
+      form.requestSubmit();
+    });
+    examples.append(example);
+  }
+  const answer = element("div", null, "financial-answer");
+  answer.hidden = true;
+  answer.setAttribute("aria-live", "polite");
+  form.append(controls, examples);
+  section.append(form, answer);
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    const { message, items } = answerFinancialQuestion(question.value, facts, snapshots);
+    answer.hidden = false;
+    answer.replaceChildren(element("h5", message));
+    for (const { summary, facts: sources } of items) {
+      if (summary) answer.append(element("strong", summary));
+      const list = element("ul");
+      for (const fact of sources) {
+        const row = element("li");
+        const context = [financialPeriod(fact), fact.statement_scope || "Scope unstated", financialBasis(fact)];
+        row.append(element("div", `${financialLabel(fact.metric)} · ${financialAmount(fact.value, fact)}`),
+          element("div", context.join(" · ")));
+        const source = element("div", null, "financial-chart-source");
+        financialSource(source, fact);
+        row.append(source);
+        list.append(row);
+      }
+      answer.append(list);
+    }
+  });
+  return section;
+}
+
+function financialCharts(facts) {
+  const groups = new Map();
+  for (const fact of [...facts].reverse()) {
+    const key = JSON.stringify([fact.metric, fact.currency, fact.unit, fact.statement_scope, financialBasis(fact)]);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(fact);
+  }
+
+  const grid = element("div", null, "financial-charts");
+  const series = [...groups.values()].sort(([a], [b]) => financialLabel(a.metric).localeCompare(financialLabel(b.metric)));
+  for (const group of series) {
+    const first = group[0];
+    const chart = element("figure", null, "financial-chart");
+    const caption = element("figcaption");
+    caption.append(element("h4", financialLabel(first.metric)), element("div", [
+      first.currency || first.unit || "Unit unstated", first.statement_scope || "Scope unstated", financialBasis(first),
+    ].join(" · "), "financial-chart-context"));
+    chart.append(caption);
+
+    const rows = element("ul", null, "financial-chart-rows");
+    rows.setAttribute("role", "list");
+    const values = group.map(fact => fact.value);
+    const minimum = Math.min(0, ...values);
+    const maximum = Math.max(0, ...values);
+    const range = maximum - minimum || 1;
+    const zero = -minimum / range;
+    rows.style.setProperty("--chart-zero", `${zero * 100}%`);
+    for (const fact of group) {
+      const row = element("li", null, "financial-chart-row");
+      const heading = element("div", null, "financial-chart-label");
+      heading.append(element("span", financialPeriod(fact)), element("strong", financialNumber.format(fact.value)));
+      const track = element("div", null, "financial-chart-track");
+      track.setAttribute("aria-hidden", "true");
+      const mark = element("div", null, "financial-chart-mark");
+      mark.classList.toggle("is-negative", fact.value < 0);
+      mark.classList.toggle("is-zero", fact.value === 0);
+      mark.style.setProperty("--bar-start", `${(Math.min(fact.value, 0) - minimum) / range * 100}%`);
+      mark.style.setProperty("--bar-width", `${Math.abs(fact.value) / range * 100}%`);
+      track.append(mark);
+      const source = element("div", null, "financial-chart-source");
+      financialSource(source, fact);
+      row.append(heading, track, source);
+      rows.append(row);
+    }
+    chart.append(rows);
+    grid.append(chart);
+  }
+  return grid;
+}
+
 function financialCard(review) {
   const { profile } = review;
+  const facts = [...profile.financials].sort((a, b) => (b.period_end || "").localeCompare(a.period_end || "") ||
+    (b.period_start || "").localeCompare(a.period_start || ""));
+  const figures = facts.filter(chartable);
   const card = element("article", null, "record");
   const top = element("div", null, "record-top");
   const heading = element("div");
@@ -200,43 +361,52 @@ function financialCard(review) {
   } else {
     heading.append(element("p", "Company identity could not be verified. Add its registry country and legal name or ID, then retry.", "identity"));
   }
-  top.append(heading, element("span", profile.financials.length ? "Figures found" : profile.documents.length ? "Filings found" : "No records returned", "chip"));
+  let outcome = "No records returned";
+  if (figures.length) outcome = "Figures found";
+  else if (profile.documents.length) outcome = "Filings found";
+  else if (facts.length) outcome = "Figures unavailable";
+  top.append(heading, element("span", outcome, "chip"));
   card.append(top);
 
-  if (profile.financials.length) {
+  if (facts.length) {
+    if (figures.length) {
+      const snapshots = balanceSheetCompositions(figures);
+      card.append(financialQA(figures, snapshots));
+      if (snapshots.length) card.append(financialPies(snapshots));
+      card.append(element("p", "Each chart uses its own scale.", "financial-scale-note"), financialCharts(figures));
+    }
+    const records = element("details", null, "details");
+    records.open = !figures.length;
+    records.append(element("summary", "Financial figures and sources"));
     const wrap = element("div", null, "table-scroll");
     const table = element("table");
     table.setAttribute("aria-label", "Financial figures for " + profile.product.name);
     const headers = element("tr");
-    for (const name of ["Metric", "Reported amount", "Period end", "Statement", "Source"]) {
+    for (const name of ["Metric", "Reported amount", "Period", "Statement", "Source"]) {
       const cell = element("th", name); cell.scope = "col"; headers.append(cell);
     }
     const head = element("thead"); head.append(headers); table.append(head);
     const body = element("tbody");
-    for (const fact of [...profile.financials].sort((a, b) => (b.period_end || "").localeCompare(a.period_end || ""))) {
+    for (const fact of facts) {
       const row = element("tr");
-      const amount = fact.value === null ? "—" : new Intl.NumberFormat(undefined, { maximumFractionDigits: 4 }).format(fact.value);
+      const amount = chartable(fact)
+        ? [fact.currency || fact.unit, financialNumber.format(fact.value)].filter(Boolean).join(" ")
+        : fact.issues.some(issue => issue.severity === "reject") ? "Withheld" : "Unavailable";
       const source = element("td");
-      source.append(link(fact.provenance.source_name, fact.provenance.url));
-      if (fact.issues.length) {
-        const warning = element("span", " ⚠", "warning");
-        warning.title = fact.issues.map((issue) => issue.message).join(" ");
-        warning.setAttribute("aria-label", warning.title);
-        source.append(warning);
-      }
-      row.append(element("td", labels[fact.metric] || fact.metric.replaceAll("_", " ")),
-        element("td", [fact.currency, amount].filter(Boolean).join(" ")), element("td", fact.period_end || "Unstated"),
-        element("td", fact.statement_scope || (fact.as_filed ? "As filed" : "Published")), source);
+      financialSource(source, fact);
+      row.append(element("td", financialLabel(fact.metric)), element("td", amount), element("td", financialPeriod(fact)),
+        element("td", [fact.statement_scope, financialBasis(fact)].filter(Boolean).join(" · ")), source);
       body.append(row);
     }
     table.append(body);
     wrap.append(table);
-    card.append(wrap);
+    records.append(wrap);
+    card.append(records);
   }
 
   if (profile.documents.length) {
     const wrapper = element("details", null, "details");
-    wrapper.open = !profile.financials.length;
+    wrapper.open = !figures.length;
     wrapper.append(element("summary", "Source filings (" + profile.documents.length + ")"));
     const list = element("ul");
     for (const doc of profile.documents) {
@@ -252,7 +422,7 @@ function financialCard(review) {
 
   if (profile.gaps.length) {
     const wrapper = element("details", null, "details");
-    wrapper.open = !profile.financials.length && !profile.documents.length;
+    wrapper.open = !figures.length && !profile.documents.length;
     wrapper.append(element("summary", "Lookup notes"));
     const list = element("ul");
     for (const gap of profile.gaps) {

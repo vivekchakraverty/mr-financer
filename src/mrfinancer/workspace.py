@@ -89,7 +89,7 @@ def homepage():
 
 @router.get("/assets/{name}", include_in_schema=False)
 def file_asset(name: str):
-    actual = {"app.js", "business-plan.js", "pitch-deck.js", "downloads.js", "company-research.js", "style.css", "sources.json", "loans.js", "investors.js", "navigation.js", "incorporation.js", "learn.js", "app-icon.png", "favicon.ico", "apple-touch-icon.png"}
+    actual = {"app.js", "financial-analysis.js", "business-plan.js", "pitch-deck.js", "downloads.js", "company-research.js", "style.css", "sources.json", "loans.js", "investors.js", "navigation.js", "incorporation.js", "learn.js", "app-icon.png", "favicon.ico", "apple-touch-icon.png"}
     if name not in actual:
         raise HTTPException(status_code=404)
     return FileResponse(assets / name, headers={"Cache-Control": "no-cache"})
