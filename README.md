@@ -40,6 +40,44 @@ python -m uvicorn mrfinancer.api:app --host 127.0.0.1 --port 8765
 
 On Linux, use `python -m playwright install --with-deps chromium` if Chromium's system libraries are missing. Core research, forecast previews and workbook browsing can run before you configure optional providers.
 
+## Ideation viability brief
+
+After finding matches, open **Could this idea pay?** Enter actual or estimated
+sales and costs, keeping unavailable figures as Unknown. **Calculate and retrieve
+evidence** computes monthly scenarios, contribution and operating margins,
+break-even and profit-target volumes, startup funding gaps, and simple cash
+runway and payback indicators. Owner's pay is separate from other running costs.
+These single-offer scenarios assume immediate payment; the Business Plan supports
+a fuller monthly cash forecast.
+
+**Create evidence-based brief** sends those calculated figures, relevant retrieved
+search records, reviewed company research and filings, and a sourced business
+guidance corpus to the selected model. The brief states the geographic target,
+labels other-market and unlocated evidence, and links citations to original
+sources, dated input records and calculation methods. Missing data stays visible.
+Guidance comes from the US SBA and describes general business methods; it is not
+local legal advice. Financials and company research enter the brief after you
+fetch them in the existing Ideation controls. Search snapshots expire after an hour.
+
+Brief generation defaults to **Qwen3.5-9B on ZeroGPU**, using the existing
+[protected model service](https://huggingface.co/spaces/vivekchakraverty/mr-financer-business-plan).
+Enter your personal Hugging Face token. Submission and result retrieval both
+forward your token, and the ZeroGPU scheduler applies your account's quota and
+eligible credits. The service's source and model mount remain protected.
+
+The optional CPU mode uses Qwen3-4B-Instruct-2507 Q4_K_M on the deployed
+[Ideation CPU Space](https://huggingface.co/spaces/vivekchakraverty/mr-financer-ideation)
+as a fallback. Set `MRF_VIABILITY_CPU_URL` to override its root URL. The Docker service
+source is under [hf-ideation-space](hf-ideation-space). For local generation, set
+`MRF_VIABILITY_CPU_URL=http://127.0.0.1:8080` and start a local llama.cpp server with
+`--n-gpu-layers 0 --ctx-size 24576 --parallel 1 --chat-template chatml --skip-chat-parsing`. Local generation needs no token; hosted
+generation requires the requesting user's HF personal access token.
+
+The ZeroGPU option calls `/draft_viability` in the backend under [hf-space](hf-space).
+It shares the loaded model and queue with business plans. Tokenizer indexing runs
+before a GPU is allocated, and generation uses a constrained citation schema.
+CPU generation may take several minutes; the calculation preview needs no model.
+
 ## Learn
 
 Open **Learn**, select a topic, and choose **Find videos** to shortlist three

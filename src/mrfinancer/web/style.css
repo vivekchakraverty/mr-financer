@@ -377,3 +377,26 @@ dialog.company-drawer { position:fixed; inset:0 0 0 auto; margin:0; padding:0; w
 .learn-match-row label { display:grid; grid-template-columns:minmax(0, 1.4fr) minmax(0, 1fr); gap:10px; align-items:center; }
 .learn-match-row small { display:block; margin-top:4px; }
 @media(max-width:625px) { .learn-match-row label { grid-template-columns:1fr; gap:4px; } }
+
+.viability-geo { background:var(--light); border-left:4px solid var(--green); padding:13px 16px; }
+.viability-settings { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px; }
+.viability-settings input,.viability-settings select { margin-top:5px; }
+.viability-inputs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+.viability-input { min-width:0; border:1px solid var(--line); border-radius:9px; padding:12px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.viability-input legend { font-weight:700; padding:0 5px; font-size:14px; }
+.viability-input label:first-of-type { grid-column:1/-1; }
+.viability-input label { font-size:12px; }
+.viability-input input,.viability-input select { margin-top:4px; }
+.viability-table-wrap { max-width:100%; overflow-x:auto; margin-top:18px; }
+.viability-table { width:100%; border-collapse:collapse; font-size:13px; }
+.viability-table caption { text-align:left; font-weight:700; padding:12px 0; }
+.viability-table th,.viability-table td { text-align:left; padding:11px; border-bottom:1px solid var(--line); vertical-align:top; min-width:130px; }
+.viability-table th:first-child { min-width:220px; }
+.viability-sources article { margin-top:10px; scroll-margin-top:20px; }
+.viability-sources p { overflow-wrap:anywhere; font-size:13px; }
+#viability-brief { margin-top:20px; }
+@media(max-width:625px) {
+  .viability-inputs,.viability-settings { grid-template-columns:1fr; }
+  #viability .search-card { padding:16px; }
+  #viability .primary { max-width:100%; white-space:normal; }
+}

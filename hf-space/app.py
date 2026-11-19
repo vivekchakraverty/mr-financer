@@ -1,5 +1,6 @@
 """Gradio ZeroGPU service for the Mr Financer business plan module."""
 import os
+import time
 from pathlib import Path
 
 import spaces  # Load before any torch import for ZeroGPU.
@@ -15,12 +16,15 @@ from starlette.responses import JSONResponse
 
 from narrative import conversation, extract_narrative
 from planning import PlanRequest, build_exhibits
+from viability_contract import BriefPacket, conversation as brief_conversation, response_schema, extract_brief
 
 ZERO_GPU = os.getenv("SPACES_ZERO_GPU") == "1"
 GPU_SECONDS = int(os.getenv("PLAN_GPU_SECONDS", "60"))
+BRIEF_GPU_SECONDS = int(os.getenv("BRIEF_GPU_SECONDS", "120"))
 MODEL_PATH = Path(os.getenv("QWEN_MODEL_PATH", "/mnt/qwen"))
 api = HfApi()
 model = tokenizer = None
+grammar_compiler = None
 
 
 def failure(code, message):
@@ -82,19 +86,8 @@ def authorize(token, method):
         account = api.whoami(token=token)
         if account.get("type") != "user":
             return 403, failure("hf_user_required", "Use a token from a personal Hugging Face account.")
-        if method == "POST":
-            try:
-                quota = api.get_zero_gpu_quota(token=token)
-            except HfHubHTTPError as exc:
-                # Billing read is optional. The signed Hub identity still has to
-                # pass the ZeroGPU scheduler's permission and quota checks.
-                if exc.response.status_code != 403:
-                    raise
-                quota = None
-            if quota is not None and quota.remaining < GPU_SECONDS:
-                return 429, failure("hf_quota_exhausted",
-                    f"Your Hugging Face ZeroGPU quota has {quota.remaining} seconds left. "
-                    f"This request needs {GPU_SECONDS} seconds. Quota resets at {quota.resets_at:%Y-%m-%d %H:%M UTC}.")
+        # The signed Hub identity and scheduler enforce quota and eligible credit
+        # usage. A remaining-daily-quota precheck would block paid extensions.
     except HfHubHTTPError as exc:
         status = exc.response.status_code
         if status == 401:
@@ -109,6 +102,22 @@ def authorize(token, method):
     return None
 
 
+def enable_gpu_kernels(module, _inputs):
+    # Device discovery must run inside the GPU worker, after allocation.
+    if not module.use_kernels:
+        started = time.monotonic()
+        import triton
+
+        # Blackwell kernels can require global scratch. FLA is imported before
+        # ZeroGPU allocates hardware, so its import-time allocator probe misses it.
+        def allocate_scratch(size, alignment, stream):
+            return torch.empty(size, device="cuda", dtype=torch.int8)
+
+        triton.set_allocator(allocate_scratch)
+        module.use_kernels = True
+        print(f"GPU kernels enabled: {torch.__version__}, {torch.cuda.get_device_name()}, {time.monotonic() - started:.2f}s", flush=True)
+
+
 if ZERO_GPU and (MODEL_PATH / "config.json").is_file():
     import torch
     from transformers import AutoTokenizer, Qwen3_5ForCausalLM
@@ -117,6 +126,13 @@ if ZERO_GPU and (MODEL_PATH / "config.json").is_file():
     model = Qwen3_5ForCausalLM.from_pretrained(MODEL_PATH, dtype=torch.bfloat16,
         local_files_only=True, attn_implementation="sdpa", low_cpu_mem_usage=True)
     model.eval().to("cuda")
+    model.register_forward_pre_hook(enable_gpu_kernels)
+    # Tokenizer indexing is CPU work; prepare it once before a caller leases a GPU.
+    import xgrammar as xgr
+    grammar_compiler = xgr.GrammarCompiler(
+        xgr.TokenizerInfo.from_huggingface(tokenizer, vocab_size=model.config.vocab_size),
+        max_threads=2, cache_limit_bytes=64 * 1024 * 1024,
+    )
 
 
 @spaces.GPU(duration=GPU_SECONDS)
@@ -146,13 +162,58 @@ def draft_plan(payload):
     return {"ok": True, "sections": sections, "exhibits": exhibits, "model": "Qwen3.5-9B"}
 
 
+@spaces.GPU(duration=BRIEF_GPU_SECONDS)
+def draft_viability(payload):
+    if not ZERO_GPU or model is None:
+        return failure("model_unavailable", "The ZeroGPU brief model is unavailable. Your calculations remain available in Mr Financer.")
+    try:
+        started = time.monotonic()
+        packet = BriefPacket.model_validate(payload)
+        inputs = tokenizer.apply_chat_template(brief_conversation(packet), tokenize=True, return_dict=True,
+            return_tensors="pt", add_generation_prompt=True, enable_thinking=False)
+        if inputs["input_ids"].shape[-1] > 22000:
+            return failure("input_too_long", "The retrieved evidence exceeds the brief model's input limit.")
+        import json
+        from xgrammar.contrib.hf import LogitsProcessor
+        grammar = grammar_compiler.compile_json_schema(json.dumps(response_schema(packet)))
+        constraint = LogitsProcessor(grammar)
+        print(f"Viability input prepared: {inputs['input_ids'].shape[-1]} tokens, {time.monotonic() - started:.2f}s", flush=True)
+        from transformers import StoppingCriteria, StoppingCriteriaList
+        input_length = inputs["input_ids"].shape[-1]
+
+        class Timing(StoppingCriteria):
+            def __call__(self, input_ids, scores, **kwargs):
+                count = input_ids.shape[-1] - input_length
+                if count <= 5 or count % 50 == 0:
+                    print(f"Viability progress: {count} new tokens, {time.monotonic() - started:.2f}s", flush=True)
+                return False
+
+        with torch.inference_mode():
+            tokens = model.generate(**inputs.to("cuda"), max_new_tokens=1400, do_sample=False,
+                                    logits_processor=[constraint], stopping_criteria=StoppingCriteriaList([Timing()]))
+        raw = tokenizer.decode(tokens[0, inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
+        print(f"Viability generation finished: {tokens.shape[-1] - inputs['input_ids'].shape[-1]} new tokens, {time.monotonic() - started:.2f}s", flush=True)
+        sections = extract_brief(raw, packet)
+        # Canonicalize evidence-absence guidance before returning to any caller.
+        import json
+        raw = json.dumps({row["key"]: row["text"] for row in sections}, ensure_ascii=False)
+        return {"ok": True, "raw": raw, "model": "Qwen3.5-9B"}
+    except (ValidationError, ValueError, TypeError):
+        return failure("invalid_brief", "The brief inputs could not be processed.")
+
+
 with gr.Blocks(title="Mr Financer Business Plan API", analytics_enabled=False) as demo:
     gr.Markdown("## Mr Financer Business Plan API\nOpen the Business plan module in Mr Financer to draft a plan.")
     input_payload = gr.JSON(visible=False)
     output_plan = gr.JSON(visible=False)
     generate = gr.Button(visible=False)
     generate.click(draft_plan, inputs=input_payload, outputs=output_plan,
-                   api_name="draft_plan", api_visibility="undocumented", concurrency_limit=1)
+                   api_name="draft_plan", api_visibility="undocumented", concurrency_limit=1,
+                   concurrency_id="qwen-model")
+    brief_button = gr.Button(visible=False)
+    brief_button.click(draft_viability, inputs=input_payload, outputs=output_plan,
+                       api_name="draft_viability", api_visibility="undocumented", concurrency_limit=1,
+                       concurrency_id="qwen-model")
 
 if __name__ == "__main__":
     demo.queue(max_size=16).launch(show_error=False,

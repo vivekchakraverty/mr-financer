@@ -7,6 +7,7 @@ import re
 import secrets
 import time
 from collections import OrderedDict
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Literal
 
@@ -32,6 +33,9 @@ assets = Path(__file__).parent / "web"
 SEARCH_TTL = 3600
 SEARCH_LIMIT = 100
 searches: OrderedDict[str, tuple[float, list[ProductMatch]]] = OrderedDict()
+# Evidence used by the viability brief is retained server-side with its search.
+# The browser cannot supply replacement company records to the brief endpoint.
+research_contexts: dict[str, dict] = {}
 
 ID_RULES = {
     Jurisdiction.GB: r"[A-Z0-9]{8}",
@@ -89,7 +93,7 @@ def homepage():
 
 @router.get("/assets/{name}", include_in_schema=False)
 def file_asset(name: str):
-    actual = {"app.js", "financial-analysis.js", "business-plan.js", "pitch-deck.js", "downloads.js", "company-research.js", "style.css", "sources.json", "loans.js", "investors.js", "navigation.js", "incorporation.js", "learn.js", "app-icon.png", "favicon.ico", "apple-touch-icon.png"}
+    actual = {"app.js", "viability.js", "financial-analysis.js", "business-plan.js", "pitch-deck.js", "downloads.js", "company-research.js", "style.css", "sources.json", "loans.js", "investors.js", "navigation.js", "incorporation.js", "learn.js", "app-icon.png", "favicon.ico", "apple-touch-icon.png"}
     if name not in actual:
         raise HTTPException(status_code=404)
     return FileResponse(assets / name, headers={"Cache-Control": "no-cache"})
@@ -115,8 +119,11 @@ async def discover(body: DiscoverRequest):
     now = time.monotonic()
     while searches and (len(searches) >= SEARCH_LIMIT or
                         next(iter(searches.values()))[0] + SEARCH_TTL < now):
-        searches.popitem(last=False)
+        expired, _ = searches.popitem(last=False)
+        research_contexts.pop(expired, None)
     searches[key] = (now, firms)
+    research_contexts[key] = {"idea": idea, "evidence": evidence, "sources": runs,
+                              "research": {}, "financials": {}, "g2": {}}
     return DiscoverResponse(search_id=key, matches=firms, sources=runs, evidence=evidence,
                             direct_count=sum(row.match_type == "direct" for row in firms))
 
@@ -141,7 +148,11 @@ async def company_research(body: CompanyResearchRequest):
                 )
     except TimeoutError:
         raise HTTPException(status_code=503, detail="Company research timed out. Try again shortly.") from None
-    return {"company": product.name, **site, "reviews": reviews}
+    result = {"company": product.name, **site, "reviews": reviews,
+              "retrieved_at": datetime.now(timezone.utc).isoformat()}
+    if body.search_id in research_contexts:
+        research_contexts[body.search_id]["research"][body.index] = result
+    return result
 
 
 @router.post("/idea/company-research/g2")
@@ -157,7 +168,10 @@ async def company_g2(body: CompanyResearchRequest, authorization: str | None = H
     product = snapshot[1][body.index]
     website = official_website(product)
     try:
-        return await fetch_g2(product, website, get_settings(), token)
+        result = await fetch_g2(product, website, get_settings(), token)
+        if body.search_id in research_contexts:
+            research_contexts[body.search_id]["g2"][body.index] = result.get("feed")
+        return result
     except G2Error as exc:
         raise HTTPException(status_code=exc.status, detail={"code": exc.code, "message": exc.message}) from None
 
@@ -212,7 +226,10 @@ async def review(body: ReviewRequest):
         return FirmReview(index=item.index, profile=result, identity_inputs=method)
 
     try:
-        return await asyncio.gather(*(lookup(item) for item in body.firms))
+        reviews = await asyncio.gather(*(lookup(item) for item in body.firms))
+        if body.search_id in research_contexts:
+            research_contexts[body.search_id]["financials"].update({row.index: row.profile for row in reviews})
+        return reviews
     finally:
         await fetcher.aclose()
 

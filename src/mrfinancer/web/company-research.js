@@ -194,6 +194,7 @@ function g2Controls(searchId, index) {
       }
       if (!section.isConnected) return;
       out.replaceChildren(reviews([data.feed]));
+      document.dispatchEvent(new Event("viability-evidence-updated"));
       const used = data.quota?.used;
       feedback.textContent = used == null ? "G2 request finished." : `G2 calls this month: ${used} of 3 used · ${data.quota.remaining} personal calls remaining · resets ${data.quota.reset_date} UTC.`;
     } catch (error) {
@@ -253,6 +254,7 @@ export async function openCompanyResearch(searchId, index, product, button) {
     });
     const result = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(typeof result.detail === "string" ? result.detail : "Company research could not complete.");
+    document.dispatchEvent(new Event("viability-evidence-updated"));
     if (active !== request) return;
     render(result);
     message();

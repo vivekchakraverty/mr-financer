@@ -25,6 +25,7 @@ const url = process.argv[2];
       ? route.continue() : route.abort());
     const response = await page.goto(url);
     if (!response.ok()) throw new Error("Could not open the packaged workspace");
+    await page.locator("#viability-price-status").waitFor({state: "attached"});
     await page.locator('a[data-page-link="documents"]').click();
     await page.locator("#plan-form [data-field=idea]").waitFor({state: "visible"});
     await page.locator('a[data-page-link="learn"]').click();
@@ -39,7 +40,11 @@ const url = process.argv[2];
 def check_routes(client, version):
     home = client.get("/").raise_for_status()
     assert 'id="business-plan"' in home.text
-    assert client.get("/openapi.json").raise_for_status().json()["info"]["version"] == version
+    assert 'id="viability"' in home.text
+    schema = client.get("/openapi.json").raise_for_status().json()
+    assert schema["info"]["version"] == version
+    assert {"/idea/viability/preview", "/idea/viability/brief"} <= schema["paths"].keys()
+    assert client.get("/assets/viability.js").raise_for_status().content
     assert client.get("/assets/downloads.js").raise_for_status().content
     assert client.get("/assets/learn.js").raise_for_status().content
     course = client.get("/learn/course").raise_for_status().json()

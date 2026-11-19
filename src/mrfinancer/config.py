@@ -32,6 +32,8 @@ class Settings(BaseSettings):
     business_plan_space_url: str = "https://vivekchakraverty-mr-financer-business-plan.hf.space"
     learn_space_url: str = "https://vivekchakraverty-mr-financer-learn.hf.space"
     learn_space_token: str | None = Field(default=None, repr=False)
+    # CPU Docker Space root URL, or a loopback llama.cpp server root URL.
+    viability_cpu_url: str = "https://vivekchakraverty-mr-financer-ideation.hf.space"
     learn_database: Path = Path(".mrfinancer-learn.sqlite")
     learn_yt_dlp: str = "yt-dlp"
     learn_collect_comments: bool = True

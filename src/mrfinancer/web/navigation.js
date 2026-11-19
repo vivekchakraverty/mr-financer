@@ -3,6 +3,7 @@ const views = {
   lookup: { page: "ideation", scroll: true },
   results: { page: "ideation", scroll: true },
   finance: { page: "ideation", scroll: true },
+  viability: { page: "ideation", scroll: true },
   documents: { page: "documents", feature: "business-plan" },
   "business-plan": { page: "documents", feature: "business-plan" },
   "pitch-deck": { page: "documents", feature: "pitch-deck" },

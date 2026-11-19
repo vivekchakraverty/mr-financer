@@ -61,11 +61,40 @@
         <div id="result-bar" class="result-bar" hidden>
           <button class="link" type="button" id="select-visible">Select shown firms</button>
           <span id="selection-count" role="status"></span>
+          <a class="link" href="#viability">Viability brief ↓</a>
           <a class="link review-link" href="#finance">Financial review ↓</a>
         </div>
         <div id="match-list" class="match-list"></div>
         <details id="search-coverage" class="details"><summary>Sources checked</summary><ul id="source-runs"></ul></details>
         <details id="other-evidence" class="details" hidden><summary>Related projects and procurement notices</summary><ul id="evidence-list"></ul></details>
+      </section>
+      <section id="viability" class="section" aria-labelledby="viability-title" hidden>
+        <div class="section-head"><div><h2 id="viability-title">Could this idea pay?</h2>
+          <p>Calculate your figures, then create a brief using the research collected for this search.</p></div></div>
+        <p class="viability-geo" id="viability-geo">The brief states your target market and labels evidence from other locations.</p>
+        <form id="viability-form" class="search-card">
+          <div class="viability-settings">
+            <label>Currency for your figures<input id="viability-currency" value="INR" maxlength="3" pattern="[A-Za-z]{3}" required></label>
+            <label>What is one paid unit?<input id="viability-unit" value="orders" maxlength="60" required></label>
+          </div>
+          <p>Enter your own figures or estimates. For estimates, you can provide a low and high value. Leave unavailable information as Unknown. Competitor prices and currencies remain as reported.</p>
+          <details class="details" open><summary>Your sales, costs and available money</summary>
+            <div id="viability-inputs" class="viability-inputs"></div>
+          </details>
+          <p>Running costs exclude your pay. Include delivery, payment fees, returns and other sale-related costs in cost per paid unit. Include regular marketing in monthly running costs.</p>
+          <button type="submit" class="primary" id="viability-calculate">Calculate and retrieve evidence</button>
+        </form>
+        <p id="viability-status" role="status" class="notice"></p>
+        <div id="viability-calculations" aria-live="polite"></div>
+        <div id="viability-generate" class="search-card" hidden>
+          <div class="viability-settings">
+            <label>Model<select id="viability-mode"><option value="zerogpu">ZeroGPU · Qwen3.5-9B</option><option value="cpu">CPU · Qwen3-4B Instruct</option></select></label>
+            <label>Hugging Face personal access token<input type="password" id="viability-token" autocomplete="off" spellcheck="false" maxlength="2048" placeholder="hf_… · required for hosted models"></label>
+          </div>
+          <p>Hosted generation sends this search's retrieved evidence and your calculated scenarios to the model service. ZeroGPU uses the quota and eligible prepaid credits of your token's account. The local CPU connection needs no token. Tokens are cleared after each request.</p>
+          <button type="button" class="primary" id="viability-draft">Create evidence-based brief</button>
+          <div id="viability-brief" class="financial-list" aria-live="polite"></div>
+        </div>
       </section>
       <section id="finance" class="section finance">
         <div class="section-head">

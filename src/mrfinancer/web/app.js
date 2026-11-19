@@ -6,6 +6,7 @@ import { initializeInvestors } from "./investors.js";
 import { initializeNavigation } from "./navigation.js";
 import { initializeIncorporation } from "./incorporation.js";
 import { initializeLearn } from "./learn.js";
+import { initializeViability, setViabilitySearch, invalidateViability } from "./viability.js";
 import { answerFinancialQuestion, balanceSheetCompositions, chartable, financialAmount, financialBasis,
   financialLabel, financialNumber, financialPercent, financialPeriod, financialQuestionExamples } from "./financial-analysis.js";
 
@@ -15,6 +16,7 @@ const reviewedForPlan = new Map();
 initializePlan();
 initializePitchDeck();
 initializeLoans();
+initializeViability();
 const countries = [["", "Automatic"], ["GB", "United Kingdom"], ["US", "United States"], ["FR", "France"],
   ["NO", "Norway"], ["SK", "Slovakia"], ["KR", "South Korea"], ["IN", "India"]];
 const idLabels = { GB: "Company number", US: "SEC CIK", FR: "SIREN", NO: "Organisation number", SK: "IČO", KR: "DART corp_code" };
@@ -467,6 +469,7 @@ byId("idea-form").addEventListener("submit", async (event) => {
   note("search-note", "Searching available product and service sources…");
   try {
     state.search = await request("/idea/discover", { idea: byId("idea").value.trim(), location: byId("market").value.trim() || null });
+    setViabilitySearch(state.search.search_id);
     state.selected.clear();
     reviewedForPlan.clear();
     updatePlanPeers([]);
@@ -512,6 +515,7 @@ byId("finance-action").addEventListener("click", async () => {
           reviewedForPlan.set(review.index, review);
         }
         updatePlanPeers([...reviewedForPlan.values()]);
+        invalidateViability("New company figures are available. Recalculate to include them in the brief.");
       } catch (error) {
         failed += firms.length;
         const group = element("article", null, "record");
